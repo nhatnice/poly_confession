@@ -1,0 +1,146 @@
+@import "../../styles/lavenst.scss";
+
+.section_c {
+        width: 80%;
+        max-width: 1080px;
+        margin: auto;
+
+        &.banner {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            border-radius: 12px;
+            margin-top: 48px;
+            height: 160px;
+
+            @include mobile {
+                display: none;
+            }
+
+            & .image {
+                position: absolute;
+                top: -11px;
+            }
+
+            & span {
+                margin-left: 210px;
+                color: #fff;
+
+                &.title {
+                    font-size: 32px;
+                    font-weight: 600;
+                }
+
+                &.text {
+                }
+            }
+        }
+
+        &.headers {
+            margin-top: 48px;
+            
+            @include mobile {
+                margin-top: 75px;
+            }
+
+            & span {
+                font-size: 13px;
+                margin: 0;
+                color: #4D5765;
+            }
+
+            & h1 {
+                font-size: 24px;
+                margin: 0;
+                margin-top: 4px;
+            }
+        }
+
+        &.categories_container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 24px;
+
+            @include mobile {    
+                flex-wrap: wrap;
+            }
+
+            @include tablet {    
+                flex-wrap: wrap;
+                height: 555px;
+                flex-direction: column;
+            }
+
+            & a.categories {
+                min-width: 250px;
+                height: 140px;
+                border-radius: 12px;
+                background: #414141;
+                flex: 1;
+                margin: 0 12px;
+                position: relative;
+                background-position: top center;
+                background-size: cover;
+                background-repeat: repeat;
+                display: block;
+
+                @include mobile {
+                    margin: 0!important;
+                    margin-top: 24px!important;
+
+                    &:first-child {
+                        margin-top: 0!important;
+                    }
+                }
+
+                @include tablet {
+                    margin: 0!important;
+                    margin-top: 24px!important;
+                    width: 100%;
+
+                    &:first-child {
+                        margin-top: 0!important;
+                    }
+                }
+
+                & h1 {
+                    font-size: 18px;
+                    margin: 24px 24px 0 24px;
+                    font-weight: bold;
+                    color: #fff;
+                }
+
+                & span {
+                    display: block;
+                    font-size: 14px;
+                    margin: 4px 24px;
+                    color: #fff;
+                }
+
+                & .count {
+                    position: absolute;
+                    bottom: 24px;
+                    left: 24px;
+                    border-left: 2px solid #fff;
+
+                    & span {
+                        margin: 0;
+                        margin-left: 8px;
+                    }
+                }
+
+                &:first-child {
+                    margin: 0 12px 0 0;
+                }
+
+                &:last-child {
+                    margin: 0 0 0 12px;
+                }
+            }
+        }
+    }

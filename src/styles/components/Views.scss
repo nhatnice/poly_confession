@@ -1,0 +1,40 @@
+.view {
+    background-color: #fff;
+
+    &.dark {
+        background-color: #18191a!important;
+    }
+
+    &.flex {
+        flex: 1;
+        height: 100vh;
+        overflow: auto;
+        padding-top: 58px;
+
+        @include mobile {
+            padding-top: 0;
+        }
+
+        & .list {    
+            width: calc(80% + 24px);
+            max-width: calc(1080px + 24px);
+            margin: auto;
+            /*display: flex;
+            flex-wrap: wrap;*/
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 368px);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                margin-top: 12px;
+                padding-bottom: 128px;
+            }
+
+            @include tablet {
+                grid-template-columns: 1fr 1fr;
+                margin-top: 12px;
+                padding-bottom: 128px;
+            }
+        }
+    }
+}

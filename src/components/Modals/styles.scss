@@ -1,0 +1,101 @@
+@import "../../styles/lavenst.scss";
+
+.modal {
+    &.lixi {
+        top: 0;
+        left: 0;
+        background: #fff!important;
+        z-index:999999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        position: fixed;
+
+        & .bao_lixis {
+            width: 400px;
+            height: auto;
+            display: flex;
+            align-items: center;
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+
+            @include mobile {
+                width:70%;
+            }
+        
+            & div {
+                height: 100%;
+            }
+
+            & ul.indicators {
+                display: none;
+            }
+        
+            & button {
+                background: transparent!important;
+                padding: 8px;
+        
+                & svg {
+                    color: #000!important;
+                    fill: #000!important;   
+                }
+            }
+        
+            & .each-slide {
+                & div {
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    transition: all .4s ease;
+                    cursor: pointer;
+        
+                    & h1 {
+                        font-size: 32px;
+                        margin: 0;
+                        position: absolute;
+                        color: #fff;
+                        font-weight: bold;
+                        left: 32px;
+                        bottom: 32px;
+                        text-shadow: 0 0 4px rgba(0, 0, 0, .25);
+                        z-index: 2;
+                    }
+                }
+            }
+        
+            >div {
+                width: 100%;
+            }
+        }
+
+        & .bao_lixi {
+            & .image {
+                border-radius: 24px;
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+                width: 100%;
+                &::after {
+                    content: "";
+                    display: block;
+                    padding-bottom: 200%;
+                }
+            }
+
+            &.left, &.right {
+                margin: 24px;
+
+                & .image {    
+                    width: 350px!important;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,168 @@
+.commentsContainer {
+    width: 400px;
+    min-height: 50vh;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    margin-top: 24px;
+    padding-bottom: 200px;
+
+    @include mobile {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    & .commentBox {
+        padding: 16px 20px;
+        height: auto;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(rgb(255, 143, 178) 0%, rgb(167, 151, 255) 50%, rgb(0, 229, 255) 100%);
+        background: #fff;
+        //box-shadow: 0px 0px 10px rgba(0,0,0,.20);
+        border: 1px solid $-gray-3;
+        background-attachment: fixed;
+        border-radius: 10px;
+        margin: 16px;
+        animation: chatBoxShowingUp .5s ease;
+        -webkit-animation: chatBoxShowingUp .5s ease;
+        -moz-animation: chatBoxShowingUp .5s ease;
+        display: flex;
+        flex-direction: column;
+
+        @include mobile {
+            width: 80%;
+            margin: 0;
+            margin-top: 16px;
+        }
+
+        @include tablet {
+            width: 400px;
+            margin: 0;
+            margin-top: 16px;
+        }
+
+        & p {
+            color: $-dark-3;
+            word-break: break-all;
+            display: block;
+            width: 100%;
+            margin: 0;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        & span.date {
+            color: $-dark-4;
+            display: block;
+            position: relative;
+            padding-bottom: 8px;
+            width: 100%;
+            font-size: 12px;
+            font-weight: 600;
+            text-align:right;
+        }
+    }
+
+    & .sendCommentContainer {
+        width: 400px;
+        height: 48px;
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bottom: 0;
+        background: rgba(255,255,255,1);
+        border-radius: 24px;
+        box-shadow: 0 0 10px rgba(0,0,0,.25);
+        margin-bottom: 16px;
+        padding: 16px 8px 16px 16px;
+
+        @include mobile {
+            margin: 0;
+            margin-bottom: 108px;
+            width: 100%;
+            //border-radius: 0;
+            //box-shadow: none;
+            width: 80%;
+            border-top: 1px solid $-gray-4;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(280%);
+            -webkit-backdrop-filter: blur(20px) saturate(280%);
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+        @include tablet {
+            margin: 0;
+            margin-bottom: 72px;
+            width: 100%;
+            //border-radius: 0;
+            //box-shadow: none;
+            width: 400px;
+            border-top: 1px solid $-gray-4;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(280%);
+            -webkit-backdrop-filter: blur(20px) saturate(280%);
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        & .icon {
+            font-size: 24px;
+            color: $-dark-3;
+        }
+
+        & button {
+            padding: 0;
+            & .icon {
+                font-size: 24px;
+            }
+        }
+
+        & input {
+            height: 100%;
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 13px;
+            color: $-dark-3;
+            margin-left: 16px;
+            border-left: 1px solid $-gray;
+            padding-left: 16px;
+            font-weight: 500;
+            border-radius: 0;
+
+            &::placeholder {
+                color: $-gray;
+                font-weight: 500;
+                transition: all .4s ease;
+            }
+
+            &:focus::placeholder{
+                opacity: 0;
+            }
+        }
+    }
+}
+
+//DARK MODE
+body.dark {
+    .commentsContainer {
+        & .sendCommentContainer {
+            background: #3a3b3c!important;
+    
+            & .icon {
+                color: #fff!important;
+            }
+    
+            & input {
+                color: #fff!important;
+            }
+        }
+    }
+}

@@ -1,0 +1,99 @@
+button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    font-size: 15px;
+    color: $-dark;
+
+    &:disabled {
+        opacity: .75;
+
+        &:hover {
+            transform: unset;
+        }
+    }
+
+    &.pink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        height: 40px;
+        background: #F73558 !important;
+        box-shadow: 0 4px 16.5px rgba(247, 53, 88, .75);
+        border:1px solid #f13053;
+        border-radius: 8px;
+        padding: 0 40px;
+
+        & .icon {
+            color: #fff;
+            font-size: 18px;
+            margin-right: 16px;
+        }
+    }
+
+    &.btn {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        float: right;
+        box-shadow: none;
+        background-color: $-red;
+        font-family: $-default-font;
+        transition: all .25s ease;
+        -moz-transition: all .25s ease;
+        box-shadow: 0 4px 16.5px rgba(247, 53, 88, .75);
+        height: 36px;
+        padding: 0 16px;
+        color: #fff;
+        letter-spacing: .5px;
+        line-height: 36px;
+        border-radius: 7px;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.075);
+            box-shadow: 0 4px 16.5px 0 rgba(247, 53, 88, .65);
+        }
+
+        &:active {
+            transform: scale(1);
+            box-shadow: 0 4px 16.5px 0 rgba(247, 53, 88, 1);
+        }
+    }
+
+    &.circle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: $-red;
+        color: #fff;
+        transition: all .25s ease;
+        -moz-transition: all .25s ease;
+        box-shadow: 0 4px 16.5px rgba(247, 53, 88, .75);
+
+        & .icon {
+            color: #fff !important;
+        }
+
+        &:hover {
+            transform: scale(1.075);
+            box-shadow: 0 4px 16.5px 0 rgba(247, 53, 88, .65);
+        }
+
+        &:active {
+            transform: scale(1);
+            box-shadow: 0 4px 16.5px 0 rgba(247, 53, 88, 1);
+        }
+    }
+
+    &:hover {
+        transform: scale(1.075);
+    }
+
+    &:active {
+        transform: scale(1);
+    }
+}

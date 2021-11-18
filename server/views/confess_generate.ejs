@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONFESS GENERATE</title>
+</head>
+<body>
+    <%
+        let month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+        data.forEach((data, i) => {
+            %><a>#CFS<%=month[new Date(data.ngayTao).getMonth()] + (i <= 9 ? "0" + i : i)%></a>
+            </br>
+            <%
+                if(data.image[0] !== "") {
+                    %>
+                    <a><%=data.noidung%></a>
+                    </br>
+                    <img style="max-width: 300px" src="/media/<%=data.image[0]%>"/>
+                    </br>
+                    <%
+                }else {
+                    %>
+                        <a><%=data.noidung%></a>
+                    </br>
+                    <%
+                }
+            %>
+            </br>
+            <%
+        })
+
+        %>
+            <a>------</a>
+            </br>
+            <a>Đồng bào muốn hỏi, gửi confess gì thì vào link dưới đây hỏi cho nó xôm, I LỚP DU CHU CỜ MO
+                https://lavenconfession.tk/#/confession/tcnhv</a>
+        <%
+    %>
+</body>
+</html>

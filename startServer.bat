@@ -1,0 +1,1 @@
+cd build&&serve -s -l 443 --ssl-cert ../cert.hungvuongconfess.tk/cert.pem --ssl-key ../cert.hungvuongconfess.tk/privkey.pem

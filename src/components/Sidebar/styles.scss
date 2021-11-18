@@ -1,0 +1,143 @@
+@import "../../styles/lavenst.scss";
+
+.sidebar {
+    width: 320px;
+    height: calc(100vh - 58px);
+    margin-top: 58px;
+    padding-top: 27px;
+    position: relative;
+    background:#fff;
+    border-right: 1px solid #DEDEDE;
+    overflow: auto;
+
+    & .close_btn {
+        position: absolute;
+        right: 24px;
+        top: 24px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
+
+        @include mobile {
+            display: flex;
+        }
+
+        @include tablet {
+            display: flex;
+        }
+
+        & .icon {
+            color: $-dark;
+            font-size: 24px;
+        }
+    }
+
+    &.show {
+        display: block;
+    }
+
+    @include mobile {
+        display: none;
+        position: fixed;
+        z-index: 99999999;
+        margin-top: 0;
+        height: 100vh;
+        width: 100%;
+    }
+
+    @include tablet {
+        display: none;
+        position: fixed;
+        z-index: 99999999;
+        margin-top: 0;
+        height: 100vh;
+        max-width: 921px;
+    }
+
+    & h1 {
+        display: block;
+        margin: 0 24px 24px 24px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #262D3C; 
+    }
+
+    & button {
+        width: calc(100% - 48px);
+        margin-left: 24px;
+        margin-top: 32px;
+    }
+    
+    & hr {
+        width: calc(100% - 48px);
+        height: 1px;
+        border: none;
+        background: #EEF0F2;
+        margin-left: 24px;
+        margin-top: 32px;
+        margin-bottom: 32px;
+    }
+
+    & ul {
+        width: calc(100% - 48px);
+        margin-left: 24px;
+
+        & span {
+            font-size: 15px;
+            color: #262D3C;
+            font-weight: bold;
+        }
+
+        & li {
+            width: 100%;
+            height: 40px;
+            background: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            margin: 16px 0;
+            cursor: pointer;
+
+            &.active {
+                //border: 1px solid #f1f1f1;
+                background: #F4F5F7;
+
+                & a {
+                    color: #4D5765!important;
+
+                    & .icon {
+                        color: #4D5765!important;
+                    }
+                }
+            }
+
+            & a {
+                width: 100%;
+                height: 100%;
+                color: #4D5765;
+                text-decoration: none!important;
+                font-size: 15px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+
+                & .icon {
+                    color: #4D5765;
+                    font-size: 20px;
+                    margin: 0 20px;
+                }
+            }
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
