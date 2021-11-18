@@ -1,0 +1,97 @@
+.modal {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.7);
+    z-index: 999;
+    backdrop-filter:blur(20px) saturate(280%);
+
+    @include mobile {
+        z-index: 9999999;
+    }
+
+    & .close_btn {
+        background: rgba(255,255,255,0.2);
+        position: absolute;
+        top: 82px;
+        right: 16px;
+        color: #fff;
+        padding: 10px 28px;
+        border-radius: 50px;
+        font-size: 14px;
+
+        @include mobile {
+            top: 16px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    &.picture {
+        align-items: center;
+        justify-content: center;
+
+        & img {
+            height: 100%;
+        }
+    }
+
+    &.form {
+        justify-content: center;
+        align-items: center;
+
+        & form {
+            padding: 16px 32px;
+            border-radius: 13px;
+            overflow: auto;
+            max-height: 70vh;
+
+            @include mobile {
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+                max-height: unset;
+                text-align: center;
+            }
+
+            & h5 {
+                margin: 16px 0 32px 0;
+                font-weight: 500;
+                text-align: center;
+            }
+
+            & .add_image {
+                width: 250px;
+                height: 200px;
+                background-color: #eaeaea;
+                border-radius: 13px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                @include mobile {
+                    width: 100%;
+                }
+
+                & label {
+                    color: $-dark;
+                    font-size: 13px;
+                    padding: 8px 16px;
+                    display: block;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: all .25s ease;
+                    -moz-transition: all .25s ease;
+                    background: rgba(0,0,0,.5);
+                    color: #fff;
+                }
+            }
+
+            & button {
+                margin: auto;
+                margin-top: 24px;
+                margin-bottom: 24px;
+            }
+        }
+    }
+}

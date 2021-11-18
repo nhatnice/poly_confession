@@ -1,0 +1,42 @@
+label.lavenst.radio {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $gray-4;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: $fastTransition;
+
+    & .mark {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: $primaryComponentsColor;
+        border: 3px solid #fff;
+        opacity: 0;
+        transform: scale(.5);
+        transition: $fastTransition;
+    }
+
+    &:hover {
+        background-color: $gray;
+    }
+
+    &.checked {
+        border: 1px solid $primaryComponentsColor;
+
+        & .mark {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    &.disabled {
+        opacity: $disabledOpacity;
+        pointer-events: none;
+    }
+}
+
+div.lavenst.radio_group {
+    display: flex;
+    flex-direction: column;
+}

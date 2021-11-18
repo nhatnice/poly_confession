@@ -1,0 +1,234 @@
+.spiners {
+
+    &.hash {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        transform: rotate(-16deg);
+        -webkit-transform: rotate(16deg);
+        -moz-transform: rotate(16deg);
+        -o-transform: rotate(16deg);
+
+        & .rot {
+            position: relative;
+            left: 10px;
+            top: 10px;
+
+            &::before {
+                content: ' ';
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                width: 50px;
+                height: 10px;
+                border-radius: 10px;
+
+                background: #2484FF;
+                opacity: .8;
+                animation: blue 2s infinite;
+                -moz-animation: blue 2s infinite;
+                -o-animation: blue 2s infinite;
+                -webkit-animation: blue 2s infinite;
+            }
+
+            &::after {
+                content: ' ';
+                position: absolute;
+                top: 20px;
+                left: 0px;
+
+                width: 50px;
+                height: 10px;
+                border-radius: 10px;
+
+                opacity: .55;
+
+                background: #2484FF;
+                opacity: .8;
+                animation: purp 2s infinite;
+                -moz-animation: purp 2s infinite;
+                -o-animation: purp 2s infinite;
+                -webkit-animation: purp 2s infinite;
+            }
+        }
+
+        & .tor {
+            position: relative;
+            left: 20px;
+            top: 2px;
+
+            &::before {
+                content: ' ';
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                width: 10px;
+                height: 50px;
+                border-radius: 10px;
+
+                background:#2484FF;
+                opacity: .4;
+                animation: green 2s infinite;
+                -moz-animation: green 2s infinite;
+                -webkit-animation: green 2s infinite;
+                -o-animation: green 2s infinite;
+            }
+
+            &::after {
+                content: ' ';
+                position: absolute;
+                top: 0;
+                left: 20px;
+
+                width: 10px;
+                height: 50px;
+                border-radius: 10px;
+
+                background:#2484FF;
+                opacity: .4;
+                animation: yellow 2s infinite;
+                -webkit-animation:  yellow 2s infinite;
+                -moz-animation:  yellow 2s infinite;
+                -o-animation:  yellow 2s infinite;
+            }
+        }
+    }
+}
+
+@keyframes blue {
+    0% {
+        transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+        width: 10px;
+    }
+
+    35% {
+        width: 50px;
+        transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+    }
+
+    65% {
+        transform: translate(40px, 0);
+        -o-transform: translate(40px, 0);
+        -moz-transform: translate(40px, 0);
+        -webkit-transform: translate(40px, 0);
+        width: 10px;
+    }
+
+    100% {
+        transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+        width: 10px;
+    }
+}
+
+@keyframes purp {
+    0% {
+        transform: translate(40px, 0);
+        -o-transform: translate(40px, 0);
+        -moz-transform: translate(40px, 0);
+        -webkit-transform: translate(40px, 0);
+        width: 10px;
+    }
+
+    35% {
+        width: 50px;
+        transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+    }
+
+    65% {
+        transform: translate(0px, 0);
+        -o-transform: translate(0px, 0);
+        -moz-transform: translate(0px, 0);
+        -webkit-transform: translate(0px, 0);
+        width: 10px;
+    }
+
+    100% {
+        transform: translate(40px, 0);
+        -o-transform: translate(40px, 0);
+        -moz-transform: (40px, 0);
+        -webkit-transform: translate(40px, 0);
+        width: 10px;
+    }
+}
+
+@keyframes green {
+    0% {
+        transform: translate(0, 40px);
+        -o-transform: translate(0, 40px);
+        -moz-transform: translate(0, 40px);
+        -webkit-transform: translate(0, 40px);
+        height: 10px;
+    }
+
+    35% {
+        height: 50px;
+        transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+    }
+
+    65% {
+        transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+        height: 10px;
+    }
+
+    100% {
+        transform: translate(0, 40px);
+        -o-transform: translate(0, 40px);
+        -moz-transform: translate(0, 40px);
+        -webkit-transform: translate(0, 40px);
+        height: 10px;
+    }
+}
+
+@keyframes yellow {
+    0% {
+        transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+        height: 10px;
+    }
+
+    35% {
+        height: 50px;
+        transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+    }
+
+    65% {
+        transform: translate(0, 40px);
+        -o-transform: translate(0, 40px);
+        -moz-transform: translate(0, 40px);
+        -webkit-transform: translate(0, 40px);
+        height: 10px;
+    }
+
+    100% {
+        transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+        height: 10px;
+    }
+}

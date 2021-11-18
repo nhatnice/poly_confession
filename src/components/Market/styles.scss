@@ -1,0 +1,55 @@
+@import "../../styles/lavenst.scss";
+
+.market_post_form_container {
+    background: #fff;
+    width: 50%;
+    height: auto;
+    min-width: 300px;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 0;
+    margin: auto;
+    margin-top: 96px;
+    box-shadow: var(--shadow-0);
+    border-radius: 10px;
+
+    & button {
+        color: $-blue-2;
+        padding: 16px 64px;
+        border-radius: 8px;
+        font-family: $-default-font;
+        transition: all .4s ease;
+
+        &:hover {  
+            background: $-blue-5;
+        }
+
+        &:active {
+            transform: scale(.9);
+        }
+    }
+}
+
+.modal.form.market {
+    & button.cancel {
+        display: none;
+    }
+
+    @include mobile {
+        & .close_btn {
+            display: none;
+        }
+
+        & button.cancel {
+            display: flex;
+        }
+    }
+}
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    
+}

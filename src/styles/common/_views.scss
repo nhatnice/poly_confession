@@ -1,0 +1,27 @@
+.views {
+    & .loading {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.dark {
+        background-color: #18191a;
+    }
+}
+
+.splash_screen {
+    background-color: #fff;
+}
+
+body.dark {
+    .splash_screen {
+        background-color: #18191a!important;
+
+        & h1 {
+            color: #fff!important;
+        }
+    }
+}

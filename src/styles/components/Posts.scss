@@ -1,0 +1,725 @@
+.ads_container_parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    height: 280px;
+    position: relative;
+    margin: auto;
+    margin-top: calc(58px + 64px);
+    //box-shadow: 0 2px 14px 0 rgba(0,0,0,.15);
+    border-radius: 13px;
+
+    @include mobile {
+        max-width: 80%;
+        height: 200px;
+        margin-top: 32px
+    }
+
+    & a {
+        width: 100%;
+        height: 100%;
+    }
+
+    & .ads_image {
+        width: 100%;
+        height: 100%;
+        border-radius: 13px;
+        z-index: 2;
+        position: relative;
+    }
+    
+    & .ads_image_shadow {
+        position: absolute;
+        width: 70%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        left: 50%;
+        transform: translate(-50%, 0);
+        bottom: -8px;
+        z-index: 0;
+        border-radius: 20px;
+        filter: blur(10px);
+
+        @include mobile {
+            width: 80%;
+        }
+
+        @include tablet {
+            width: 80%;
+        }
+
+        & .ads_image_shadow_image {
+            margin-top: 0;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            opacity: .75;
+        }
+    }
+}
+
+.confess_container_parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+
+    & .confess_container {
+        width: 80%;
+        max-width: 400px;
+        height: auto;
+        padding: 32px 40px;
+        background-color: #fff;
+        box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.15);
+        border-radius: 13px;
+        margin-top: 48px;
+        position: relative;
+        transition: all .4s ease;
+        -moz-transition: all .4s ease;
+
+        //REACTION BOX
+        & .reaction_box_container {
+            height: 32px;
+            float: left;
+            margin: 0;
+            margin-top: 32px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+
+            & .react_count {
+                font-size: 13px;
+                font-weight: 600;
+                color: #00000075;
+                transition: all .4s ease;
+
+                &.liked {
+                    color: $-red;
+                }
+            }
+
+            & .react_btn {
+                margin: 0;
+                padding: 0;
+                transition: all .25s ease;
+
+                &:active {
+                    transform: scale(.8);
+                    -webkit-transform: scale(.8);
+                    -moz-transform: scale(.8);
+                }
+
+                &.liked {
+                    & .icon {
+                        color: $-red;
+                    }
+                }
+
+                & .icon {
+                    font-size: 22px;
+                    margin-right: 8px;
+                    color: #00000075;
+                    transition: all .4s ease;
+                }
+            }
+
+            &:hover {
+                & .reaction_container {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: scale(1);
+                }
+            }
+
+            & .reaction_container {
+                width: 160px;
+                height: 160px;
+                position: absolute;
+                background-color: #fff;
+                border-radius: 50%;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, .08);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transform: scale(.75);
+                visibility: hidden;
+                transition: all .2s ease;
+
+                & .react_container {
+                    width: 64px;
+                    height: 64px;
+                    border-radius: 50%;
+                    position: absolute;
+                    display: flex;
+
+                    &:hover {
+                        & .react {
+                            transform: scale(1.25);
+                        }
+                    }
+
+                    & .react {
+                        width: 50%;
+                        height: 50%;
+                        transition: all .2s ease-in-out;
+                    }
+
+                    &:first-child {
+                        top: 16px;
+                        align-items: flex-start;
+                        justify-content: center;
+                    }
+
+                    &:nth-child(2) {
+                        right: 16px;
+                        align-items: center;
+                        justify-content: flex-end;
+                    }
+
+                    &:nth-child(3) {
+                        bottom: 16px;
+                        align-items: flex-end;
+                        justify-content: center;
+                    }
+
+                    &:nth-child(4) {
+                        left: 16px;
+                        align-items: center;
+                        justify-content: flex-start;
+                    }
+
+                    &:last-child {
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+
+        &.hasAudio {
+            & .player {
+                position: relative;
+                margin-top: 48px;
+
+                .info {
+                    position: absolute;
+                    height: 60px;
+                    top: 0;
+                    opacity: 0;
+                    left: 10px;
+                    right: 10px;
+                    background-color: rgba(255, 255, 255, 0.5);
+                    padding: 5px 15px 5px 110px;
+                    border-radius: 15px;
+                    transition: all .5s ease;
+
+                    .artist,
+                    .name {
+                        display: block;
+                    }
+
+                    .artist {
+                        color: #222;
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                    }
+
+                    .name {
+                        color: #999;
+                        font-size: 12px;
+                        margin-bottom: 8px;
+                    }
+
+                    .progress-bar {
+                        background-color: #ddd;
+                        height: 2px;
+                        width: 100%;
+                        position: relative;
+
+                        .bar {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            bottom: 0;
+                            background-color: red;
+                            width: 10%;
+                            transition: all .2s ease;
+                        }
+                    }
+
+                    &.active {
+                        top: -60px;
+                        opacity: 1;
+                        transition: all .5s ease;
+                    }
+                }
+
+                .control-panel {
+                    position: relative;
+                    background-color: #fff;
+                    border-radius: 15px;
+                    width: 300px;
+                    height: 80px;
+                    z-index: 5;
+                    box-shadow: 0px 20px 20px 5px rgba(132, 132, 132, 0.3);
+
+                    @include mobile {
+                        width: 100%;
+                        height: auto !important;
+                    }
+
+                    .album-art {
+                        position: absolute;
+                        left: 20px;
+                        top: -15px;
+                        height: 80px;
+                        width: 80px;
+                        border-radius: 50%;
+                        box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0);
+                        transform: scale(1);
+                        transition: all .5s ease;
+
+                        @include mobile {
+                            position: relative;
+                            margin: auto;
+                            left: 0;
+                        }
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            width: 15px;
+                            height: 15px;
+                            background-color: #fff;
+                            border-radius: 50%;
+                            z-index: 5;
+                            transform: translate(-50%, -50%);
+                            -webkit-transform: translate(-50%, -50%);
+                        }
+
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            border-radius: 50%;
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: 80px;
+                            background-image: url('https://i.scdn.co/image/9dcbd30dbe0c621cbaeae427cf80eff9877b4fcd');
+                        }
+                    }
+
+                    &.active .album-art {
+                        box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
+                        transform: scale(1.2);
+                        transition: all .5s ease;
+                    }
+
+                    &.active .album-art::before {
+                        animation: rotation 3s infinite linear;
+                        -webkit-animation: rotation 3s infinite linear;
+                        animation-fill-mode: forwards;
+                    }
+
+                    @keyframes rotation {
+                        0% {
+                            transform: rotate(0deg);
+                        }
+
+                        100% {
+                            transform: rotate(360deg);
+                        }
+                    }
+
+                    .controls {
+                        display: flex;
+                        justify-content: flex-end;
+                        height: 80px;
+                        padding: 0 15px;
+
+                        @include mobile {
+                            height: auto;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            .prev,
+                            .play,
+                            .next {
+                                height: 55px !important;
+                            }
+                        }
+
+                        .prev,
+                        .play,
+                        .next {
+                            width: 55px;
+                            height: auto;
+                            border-radius: 10px;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: 20px;
+                            margin: 5px 0;
+                            background-color: #fff;
+                            cursor: pointer;
+                            transition: background-color .3s ease;
+                            -webkit-transition: background-color .3s ease;
+                        }
+
+                        .prev:hover,
+                        .play:hover,
+                        .next:hover {
+                            background-color: #eee;
+                            transition: background-color .3s ease;
+                            -webkit-transition: background-color .3s ease;
+                        }
+
+                        .prev {
+                            background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI1MC40ODggMjUwLjQ4OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjUwLjQ4OCAyNTAuNDg4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4Ij4KPGcgaWQ9IlByZXZpb3VzX3RyYWNrIj4KCTxwYXRoIHN0eWxlPSJmaWxsLXJ1bGU6ZXZlbm9kZDtjbGlwLXJ1bGU6ZXZlbm9kZDsiIGQ9Ik0yMzcuNDg0LDIyLjU4N2MtMy4yNjYsMC03LjU5MS0wLjQwMS0xMS4wNzIsMi4wMDVsLTkyLjI2NCw3Ny45MVYzNy4yNTIgICBjMC0yLjUwNywwLjA1Ny0xNC42NjYtMTMuMDA0LTE0LjY2NmMtMy4yNjUsMC03LjU5LTAuNDAxLTExLjA3MiwyLjAwNUw4LjEwNywxMTAuNjkzYy05LjY2OSw2LjY3NC03Ljk5NywxNC41NTEtNy45OTcsMTQuNTUxICAgcy0xLjY3MSw3Ljg3OCw3Ljk5NywxNC41NTFsMTAxLjk2NSw4Ni4xMDJjMy40ODIsMi40MDUsNy44MDcsMi4wMDQsMTEuMDcyLDIuMDA0YzEzLjA2MiwwLDEzLjAwNC0xMS43LDEzLjAwNC0xNC42NjZ2LTY1LjI0OSAgIGw5Mi4yNjQsNzcuOTExYzMuNDgyLDIuNDA1LDcuODA3LDIuMDA0LDExLjA3MiwyLjAwNGMxMy4wNjIsMCwxMy4wMDQtMTEuNywxMy4wMDQtMTQuNjY2VjM3LjI1MiAgIEMyNTAuNDg4LDM0Ljc0NiwyNTAuNTQ2LDIyLjU4NywyMzcuNDg0LDIyLjU4N3oiIGZpbGw9IiNjMmM2Y2YiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K);
+                        }
+
+                        .play {
+                            background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIzMi4xNTMgMjMyLjE1MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjMyLjE1MyAyMzIuMTUzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4Ij4KPGcgaWQ9IlBsYXkiPgoJPHBhdGggc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkOyIgZD0iTTIwMy43OTEsOTkuNjI4TDQ5LjMwNywyLjI5NGMtNC41NjctMi43MTktMTAuMjM4LTIuMjY2LTE0LjUyMS0yLjI2NiAgIGMtMTcuMTMyLDAtMTcuMDU2LDEzLjIyNy0xNy4wNTYsMTYuNTc4djE5OC45NGMwLDIuODMzLTAuMDc1LDE2LjU3OSwxNy4wNTYsMTYuNTc5YzQuMjgzLDAsOS45NTUsMC40NTEsMTQuNTIxLTIuMjY3ICAgbDE1NC40ODMtOTcuMzMzYzEyLjY4LTcuNTQ1LDEwLjQ4OS0xNi40NDksMTAuNDg5LTE2LjQ0OVMyMTYuNDcxLDEwNy4xNzIsMjAzLjc5MSw5OS42Mjh6IiBmaWxsPSIjYzJjNmNmIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+                        }
+
+                        .next {
+                            background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI1MC40ODggMjUwLjQ4OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjUwLjQ4OCAyNTAuNDg4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4Ij4KPGcgaWQ9Ik5leHRfdHJhY2tfMiI+Cgk8cGF0aCBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7IiBkPSJNMjQyLjM4MSwxMTAuNjkzTDE0MC40MTUsMjQuNTkxYy0zLjQ4LTIuNDA2LTcuODA1LTIuMDA1LTExLjA3MS0yLjAwNSAgIGMtMTMuMDYxLDAtMTMuMDAzLDExLjctMTMuMDAzLDE0LjY2NnY2NS4yNDlsLTkyLjI2NS03Ny45MWMtMy40ODItMi40MDYtNy44MDctMi4wMDUtMTEuMDcyLTIuMDA1ICAgQy0wLjA1NywyMi41ODcsMCwzNC4yODcsMCwzNy4yNTJ2MTc1Ljk4M2MwLDIuNTA3LTAuMDU3LDE0LjY2NiwxMy4wMDQsMTQuNjY2YzMuMjY1LDAsNy41OSwwLjQwMSwxMS4wNzItMi4wMDVsOTIuMjY1LTc3LjkxICAgdjY1LjI0OWMwLDIuNTA3LTAuMDU4LDE0LjY2NiwxMy4wMDMsMTQuNjY2YzMuMjY2LDAsNy41OTEsMC40MDEsMTEuMDcxLTIuMDA1bDEwMS45NjYtODYuMTAxICAgYzkuNjY4LTYuNjc1LDcuOTk3LTE0LjU1MSw3Ljk5Ny0xNC41NTFTMjUyLjA0OSwxMTcuMzY3LDI0Mi4zODEsMTEwLjY5M3oiIGZpbGw9IiNjMmM2Y2YiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K)
+                        }
+                    }
+
+                    &.active .controls .play {
+                        background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIzMi42NzkgMjMyLjY3OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjMyLjY3OSAyMzIuNjc5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4Ij4KPGcgaWQ9IlBhdXNlIj4KCTxwYXRoIHN0eWxlPSJmaWxsLXJ1bGU6ZXZlbm9kZDtjbGlwLXJ1bGU6ZXZlbm9kZDsiIGQ9Ik04MC41NDMsMEgzNS43OTdjLTkuODg1LDAtMTcuODk4LDguMDE0LTE3Ljg5OCwxNy44OTh2MTk2Ljg4MyAgIGMwLDkuODg1LDguMDEzLDE3Ljg5OCwxNy44OTgsMTcuODk4aDQ0Ljc0NmM5Ljg4NSwwLDE3Ljg5OC04LjAxMywxNy44OTgtMTcuODk4VjE3Ljg5OEM5OC40NCw4LjAxNCw5MC40MjcsMCw4MC41NDMsMHogTTE5Ni44ODIsMCAgIGgtNDQuNzQ2Yy05Ljg4NiwwLTE3Ljg5OSw4LjAxNC0xNy44OTksMTcuODk4djE5Ni44ODNjMCw5Ljg4NSw4LjAxMywxNy44OTgsMTcuODk5LDE3Ljg5OGg0NC43NDYgICBjOS44ODUsMCwxNy44OTgtOC4wMTMsMTcuODk4LTE3Ljg5OFYxNy44OThDMjE0Ljc4MSw4LjAxNCwyMDYuNzY3LDAsMTk2Ljg4MiwweiIgZmlsbD0iI2MyYzZjZiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=)
+                    }
+                }
+            }
+        }
+
+        &.hasImage,
+        &.hasBackground {
+            height: 520px;
+            box-shadow: none;
+            padding: 0;
+
+            &.hasBackground {
+                min-height: 127.86px;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+
+                & .confess_image {
+                    height: auto;
+                    padding: 32px 40px;
+
+                    & .hastag {
+                        color: #fff;
+                        text-shadow: 0px 0px 10px #000000a8;
+                    }
+
+                    & .date {
+                        color: rgba(255, 255, 255, .95);
+                        text-shadow: 0px 0px 10px #000000a8;
+
+                        @include mobile {
+                            display: none;
+                        }
+                    }
+
+                    & .comments_count {
+                        color: rgba(255, 255, 255, .8);
+                        font-weight: 600;
+                        font-size: 13px;
+                        float: right;
+                        margin: 0;
+                        margin-top: 38px;
+                        position: relative;
+                    }
+
+                    & .confess {
+                        color: #fff;
+                        font-size: 18px;
+                        font-weight: 500;
+                        text-shadow: 0px 0px 10px #000000a8;
+                    }
+                }
+            }
+
+            & .confess_image_filter {
+                width: 100%;
+                height: 100%;
+                z-index: 3;
+                background: rgba(0, 0, 0, .25);
+                position: absolute;
+                border-radius: 13px;
+                pointer-events: none;
+
+                & .hastag {
+                    color: #fff;
+                    margin: 32px 40px 0 40px;
+                    text-shadow: 0px 0px 10px #000000a8;
+                }
+
+                & .date {
+                    color: #ffffff85;
+                    text-shadow: 0px 0px 10px #000000a8;
+                    pointer-events: all;
+
+                    @include mobile {
+                        display: none;
+                    }
+                }
+
+                & .comments_count {
+                    color: rgba(255, 255, 255, .8);
+                    font-weight: 500;
+                    font-size: 13px;
+                    margin: 0;
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    padding: 20px 40px;
+                    pointer-events: all;
+                }
+
+                & .reaction_box_container {
+                    position: absolute;
+                    bottom: 14px;
+                    left: 40px;
+                    pointer-events: all;
+
+                    & button {
+                        &.liked {
+                            & .icon {
+                                color: #fff;
+                            }
+                        }
+    
+                        & .icon {
+                            color: rgba(255, 255, 255, .8);
+                        }
+                    }
+                    & .react_count {
+                        color: rgba(255, 255, 255, .8);
+    
+                        &.liked {
+                            color: #fff;
+                        }
+                    }
+                }
+
+                & .confess {
+                    position: absolute;
+                    max-width: 75%;
+                    bottom: 58px;
+                    left: 40px;
+                    color: #fff;
+                    font-size: 13px;
+                    font-weight: 500;
+                    text-shadow: 0px 0px 10px #000000a8;
+                    word-break: break-all;
+                }
+            }
+
+            & .confess_image {
+                width: 100%;
+                height: 100%;
+                border-radius: 13px;
+                z-index: 2;
+                position: relative;
+            }
+
+            & .reaction_box_container {
+                & button {
+                    &.liked {
+                        & .icon {
+                            color: #fff;
+                        }
+                    }
+
+                    & .icon {
+                        color: rgba(255, 255, 255, .8);
+                    }
+                }
+                & .react_count {
+                    color: rgba(255, 255, 255, .8);
+
+                    &.liked {
+                        color: #fff;
+                    }
+                }
+            }
+
+            & .confess_image_shadow {
+                position: absolute;
+                width: 70%;
+                height: 100%;
+                overflow: hidden;
+                display: flex;
+                left: 50%;
+                transform: translate(-50%, 0);
+                bottom: -8px;
+                z-index: 0;
+                border-radius: 20px;
+                filter: blur(10px);
+
+                @include mobile {
+                    width: 80%;
+                }
+
+                @include tablet {
+                    width: 80%;
+                }
+
+                & .confess_image_shadow_image {
+                    margin-top: 0;
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                    opacity: .75;
+                }
+            }
+
+            &:hover {
+                box-shadow: none;
+            }
+        }
+
+        & .hastag {
+            color: $-red;
+            font-weight: 600;
+            line-height: 1.19048;
+            font-size: 21px;
+            letter-spacing: .011em;
+            margin: 0;
+        }
+
+        & .confess {
+            color: $-black;
+            font-weight: 500;
+            font-size: 18px;
+            margin: 0;
+            margin-top: .77em;
+            line-height: 1.4211;
+            letter-spacing: .012em;
+        }
+
+        & .comments_count {
+            color: #00000075;
+            font-weight: 600;
+            font-size: 13px;
+            float: right;
+            margin: 0;
+            margin-top: 38px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        & .date {
+            position: absolute;
+            top: 34px;
+            right: 40px;
+            margin: 0;
+            font-size: 13px;
+            font-weight: 600;
+            color: #00000075;
+            cursor: pointer;
+            transition: all .4s;
+            -moz-transition: all .4s;
+
+            &#dateSecond {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+//DARK MODE
+body.dark {
+    .commentsContainer {
+        & .commentBox {
+            background-color: #18191a!important;
+            border-color: #3a3b3c!important;
+            color: #fff!important;
+
+            & p {
+                color: #fff!important;
+            }
+        }
+    }
+
+    .confess_container_parent{
+        & .confess_container {
+            background-color: #242526!important;
+    
+            & p.hastag {
+                
+            }
+    
+            & p.date {
+                color: #ffffff95!important;
+            }
+    
+            & p.confess {
+                color: #fff!important;
+            }
+    
+            & p.react_count {
+                color: #ffffff95!important;
+            
+                &.liked {
+                    color: #fff!important;
+                }
+            }
+    
+            & .comments_count {
+                color: #ffffff95!important;
+            }
+    
+            & .react_btn {
+                & .icon {
+                    color: #ffffff95!important;
+                }
+    
+                &.liked {
+                    & .icon {
+                        color: #fff!important;
+                    }
+                }
+            }
+    
+            & .player {
+                & .control-panel {
+                    background: #414141;
+                    box-shadow: 0px 20px 20px 5px rgba(0,0,0, 0.3);
+    
+                    & .controls {
+                        div {
+                            background-color: #414141!important;
+                        }
+                    }
+                }
+            }
+        }
+    
+        & .confess_image_shadow {
+            & .confess_image_shadow_image {
+                opacity: .25!important;
+            }
+        }
+    }
+}

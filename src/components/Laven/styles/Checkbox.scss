@@ -1,0 +1,65 @@
+div.lavenst.form_control_label {
+    display: block;
+
+    & .checkbox {
+        float:left;
+    }
+
+    & label {
+        float:left;
+        margin-left: 8px;
+        cursor: pointer;    
+        font-size: .8rem;
+        color: #9e9e9e;
+    }
+}
+
+div.lavenst.checkbox {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid $gray-4;
+    cursor: pointer;
+    transition: $fastTransition;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background: $gray;
+    }
+
+    & .mark {
+        color: #fff;
+        font-size: 16px;
+        transform: scale(0);
+        transition: $fastTransition;
+    }
+
+    &.checked {
+        border-color: $primaryComponentsColor;
+        background-color: $primaryComponentsColor;
+
+        & .mark {
+            transform: scale(1);
+        }
+    }
+
+    &.disabled {
+        opacity: $disabledOpacity;
+        pointer-events: none;
+
+        &.checked {
+            border-color: $gray-4;
+            background-color: $gray;
+
+            & .mark {
+                color: $dark;
+            }
+        }
+
+        &:hover {
+            background: transparent;
+        }
+    }
+}
