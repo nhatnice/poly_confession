@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const Schema = require('./modules/MongoSchema.js');
 const app = express();
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const https = require('https');
 const http = require('http');
 const mongoHost = "mongodb://lavenesconfession:LavenesConfessionDB2022hjklakj@localhost:27017/LavenesConfession";
@@ -169,11 +168,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.use(session({
-    secret: 'keyboard cat',
-    resave: true,
-    saveUninitialized: true
-}));
 app.use(express.static("public"));
 
 app.set("view engine", "ejs");
