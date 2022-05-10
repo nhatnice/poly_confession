@@ -100,9 +100,7 @@ const Base64 = {
 }
 const multer = require('multer');
 const path = require('path');
-const ffmpeg = require('ffmpeg-static');
 const fs = require('fs');
-const genThumbnail = require('simple-thumbnail');
 const fileTypes = /png|jpg|gif|jpeg/;
 const storage = multer.diskStorage({ //UPLOADS FILE
     destination: function (req, file, cb) {
