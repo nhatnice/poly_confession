@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const https = require('https');
 const http = require('http');
-const mongoHost = "mongodb://localhost:27017/HungVuonConfess";
+const mongoHost = "mongodb://lavenesconfession:LavenesConfessionDB2022hjklakj@localhost:27017/LavenesConfession";
 const Base64 = {
     _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
     encode: function (e) {
@@ -181,9 +181,9 @@ app.set("views", "./views");
 
 
 // Certificate
-const privateKey = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/lavenshop.tk/privkey.pem', 'utf8') : "";
-const certificate = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/lavenshop.tk/fullchain.pem', 'utf8') : "";
-const ca = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/lavenshop.tk/fullchain.pem', 'utf8') : "";
+const privateKey = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/privkey.pem', 'utf8') : "";
+const certificate = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/fullchain.pem', 'utf8') : "";
+const ca = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/fullchain.pem', 'utf8') : "";
 
 const credentials = {
     key: privateKey,
