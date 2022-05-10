@@ -1,5 +1,5 @@
 const DEBUG = false;
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 const express = require("express");
 const mongoose = require('mongoose');
 const Schema = require('./modules/MongoSchema.js');
@@ -163,7 +163,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
