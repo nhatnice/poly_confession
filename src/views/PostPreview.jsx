@@ -5,11 +5,10 @@ import io from 'socket.io-client';
 import Axios from 'axios';
 
 //COMPONENTS
-import {ConfessSinglePost} from '../components/Posts/Post';
-import {CommentsContainer} from '../components/Posts/CommentsBox';
-import {Header} from '../components/Header/Header';
-import {SplashScreen} from '../components/Splash_Screen';
-import {Meta} from '../components/Meta/Meta';
+import {PostCard} from '@components/Posts';
+import {CommentsContainer} from '@components/Posts/CommentsBox';
+import {Header} from '@components/Header/Header';
+import {SplashScreen} from '@components/Splash_Screen';
 
 const socket = io(SERVER_LINK);
 
@@ -45,9 +44,8 @@ class PostPreview extends Component {
 
         return(
                 <div className="postPreviewView">
-                    <Meta title={this.state.confess.noi_dung}/>
                     <Header title="POST" HistoryParent={this}/>
-                    <ConfessSinglePost confess={this.state.confess} post_id={this.state.post_id} client_ip={this.state.client_ip}/>
+                    <PostCard data={this.state.confess} post_id={this.state.post_id} client_ip={this.state.client_ip}/>
                     <CommentsContainer socket={socket} post_id={this.state.post_id}/>
                 </div>
         )

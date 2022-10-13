@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@api": ["src/api"],
+      "@api/*": ["src/api/*"],
+      "@orios": ["src/orios"],
+      "@orios/*": ["src/orios/*"],
+      "@config" : ["src/config"],
+      "@config/*" : ["src/config/*"],
+      "@components": ["src/components"],
+      "@components/*": ["src/components/*"],
+      "@styles": ["src/styles"],
+      "@styles/*": ["src/styles/*"],
+      "@utils": ["src/utils"],
+      "@utils/*": ["src/utils/*"],
+      "@views": ["src/views"],
+      "@views/*": ["src/views/*"]
+    }
+  }
+}

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {BaoLixi, Mail} from '../components/Lixi';
 import {API} from '../functions/API';
-import {Meta} from '../components/Meta/Meta';
 import {SplashScreen} from '../components/Splash_Screen';
 
 import Bao1 from '../styles/resources/baoLixi/Bao1.png';
@@ -58,7 +57,6 @@ class Lixi extends Component {
 
         return(
             <div className="lixiView" style={{display: 'flex', alignItems:'center', justifyContent: 'center'}}>
-                <Meta/>
                 <audio src={Music} ref="music"/>
                 <Mail data={data} visible={this.state.openning}/>
                 <BaoLixi data={data} bao_lixi={this.state.bao2011} onOpen={this.handleOpenning}/>

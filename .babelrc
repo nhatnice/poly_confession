@@ -1,0 +1,19 @@
+{
+    "plugins": [
+      ["module-resolver", {
+        "root": ["./src"],
+        "extensions": [".js", ".jsx", ".es", ".es6", ".mjs", ".scss"],
+        "alias": {
+          "@orios": "./src/orios",
+          "@api" : "./src/api",
+          "@assets" : "./src/assets",
+          "@components": "./src/components",
+          "@config" : "./src/config",
+          "@navigation" : "./src/navigation",
+          "@styles" : "./src/styles",
+          "@utils" : "./src/utils",
+          "@views" : "./src/views"
+        }
+      }]
+    ]
+}

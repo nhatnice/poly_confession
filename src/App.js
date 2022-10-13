@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import * as Orios from "@orios";
 
 //COMPONENTS
 import {Navigation, ChildHeader} from './components/Navigation_Bar';
@@ -7,12 +8,17 @@ import {AdsTopHeader} from './components/Header/AdsTopHeader';
 
 //VIEWS
 import Home from './views/Home';
-import Confession from './views/Confession';
+import Feed from './views/Feed';
 import PostPreview from './views/PostPreview';
 import Market from './views/Market';
 import RedirectView from './views/Redirect';
 import Lixi from './views/Lixi';
 import Test from './views/Test';
+
+// Initialize Orios
+const orios = Orios.initializeApp({
+  app: "63452fa601a4792a134bf3f2"
+})
 
 class App extends Component {
   constructor(props) {
@@ -46,14 +52,14 @@ class Main extends Component {
   render() {
       return (
         <main>
-          <Switch>
-            <Route exact path='/test' component={Test}/>
-            <Route exact path='/lixi/:id' component ={Lixi}/>
-            <Route exact path='/confession/:id' component={Confession}/>
-            <Route path='/post/:post_id' component={PostPreview}/>
-            <Route path='/market/:page' component={Market}/>
-            <Route path='/' component={Home}/>
-          </Switch>
+          <Routes>
+            <Route exact path='/test' element={<Test/>}/>
+            <Route exact path='/lixi/:id' element ={<Lixi/>}/>
+            <Route exact path='/feed/:id' element={<Feed/>}/>
+            <Route path='/post/:post_id' element={<PostPreview/>}/>
+            <Route path='/market/:page' element={<Market/>}/>
+            <Route path='/' element={<Home/>}/>
+          </Routes>
         </main>
       )
   }

@@ -15,8 +15,8 @@ class ReactionBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            liked: this.props.emotions.map(function(e) { return e.client_ip; }).indexOf(this.props.client_ip) > -1 ? true : false,
-            like_count: this.props.emotions.length
+            liked: this.props.emotions?.map(function(e) { return e.client_ip; }).indexOf(this.props.client_ip) > -1 ? true : false,
+            like_count: this.props.emotions?.length || 0
         }
     }
 
