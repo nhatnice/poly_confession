@@ -3,6 +3,9 @@ import { BsChatSquareQuoteFill, BsCardImage, BsArrowRightShort } from "react-ico
 import Axios from 'axios';
 import autosize from "autosize";
 import {SERVER_LINK, API_LINK} from '../../functions/Global';
+import API from '@api';
+import Orios from '@orios';
+import CONFIG from '@config';
 
 import "../../styles/components/_confess_forms.scss";
 
@@ -45,24 +48,15 @@ class ConfessForm extends Component {
       autosize(this.refs.confessInput);
     }
 
-    handleImageUpload = (File) => { 
-        let formData = new FormData();
-        
-        formData.append("image", File);
-        let config = {
-          headers: {
-              'content-type': 'multipart/form-data'
-          }
-        }
-    
-        Axios.post(`${SERVER_LINK}/uploadImage`, formData, config).then(res => {
-          this.setState({
-            image: `url(${SERVER_LINK}/media/` + res.data.fileName +') no-repeat center center / cover',
-            imageName: res.data.fileName,
-            hasImage: 'flex',
-            background_select_is_hidden: 'none'
-          })
-        });
+    handleImageUpload = async (file) => { 
+      let bannerRes = await Orios.Files.uploadMedia(file);
+      
+      this.setState({
+        image: `url(${bannerRes.url}) no-repeat center center / cover`,
+        imageName: bannerRes.url,
+        hasImage: 'flex',
+        background_select_is_hidden: 'none'
+      })
     }
 
     handleSelectPostBackground = (background_id) => {   
@@ -71,70 +65,32 @@ class ConfessForm extends Component {
         })
     }
 
-    handleConfessUpload = () => {
+    handleConfessUpload = async () => {
         let confess = this.refs.confessInput.value;
         let image = this.state.imageName;
-        let background = this.state.postBackgroundActive;
-        let date = new Date();
+        let background = this.state.postBackgroundActive != 'none' ? `${window.location.origin}${CONFIG.postBackgroundPath}${this.state.postBackgroundActive}.jpg` : null;
+        
+        let now = new Date();
+        let month = now.getMonth() + 1;
+        month = month <= 9 ? '0' + month : month;
+        let date = now.getDate();
+        date = date <= 9 ? '0' + date : date;
   
         if(confess === "") {
           this.setState({
             msg : "Hãy nhập confess đi :3"
           })
         }else {
-          //GET USER DATA
-          Axios.get("https://www.cloudflare.com/cdn-cgi/trace").then((cloud_flare_result) => {
-              //GET DEVICE TYPE
-              const getDeviceType = () => {
-                const ua = navigator.userAgent;
-                if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-                  return "tablet";
-                }
-                if (
-                  /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
-                    ua
-                  )
-                ) {
-                  return "mobile";
-                }
-                return "desktop";
-              };
-
-              let data = {
-                noidung: confess,
-                hashtag: "",
-                image: [image],
-                ngayTao: date,
-                user: 'User',
-                video: null,
-                background: background,
-                clientData: {
-                  cloudflare: cloud_flare_result.data,
-                  position: {
-                    latitude: '',
-                    longitude: ''
-                  },
-                  browser_code_name: navigator.appCodeName,
-                  browser_name: navigator.appName,
-                  browser_engine: navigator.product,
-                  user_agent: navigator.userAgent,
-                  OS: navigator.platform,
-                  device_type: getDeviceType()
-                },
-                analytics: window.location.search,
-                confess_id: "",
-                school_id: window.location.hash.replace("#","").replace("/","").split("/")[1]
-              }
-
-              //POST TO SERVER
-              Axios.post(`${API_LINK}send_confess/${data.school_id}`, data).then((res) => {});
+          await API.Confessions.add(confess, image || background, {
+            hasImage: !!image,
+            hashtag: `CFS${now.getYear() - 100}${month}${date}${now.getHours()}${now.getMinutes()}`
+          });
         
-            this.setState({
-              ConfessUploadMsg: 'Confess của bạn đã đăng thành công!',
-              ConfessUploadSuccessful: 'none',
-              background_select_is_hidden: 'none',
-              hasImage: 'none'
-            })
+          this.setState({
+            ConfessUploadMsg: 'Confess của bạn đã đăng thành công!',
+            ConfessUploadSuccessful: 'none',
+            background_select_is_hidden: 'none',
+            hasImage: 'none'
           })
         }
     }

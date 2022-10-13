@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {MarketPostForm} from '../components/Market/Market_Components';
 import {MarketSidebar} from '../components/Sidebar/Sidebar';
-import {Meta} from '../components/Meta/Meta';
 import {SectionBanner, SectionHeader, SectionCategories} from '../components/Sections/Sections';
 import {ProductCard} from '../components/Cards/Cards';
 import {ProductEditModal} from '../components/Market/Modal';
@@ -121,7 +120,6 @@ class Market extends Component {
             <div>
                 <DefaultHeader onSearch={this.handleSearch} onOpenSideBar={() => this.setState({side_bar: true})}/>
                 <ProductEditModal onCloseModal={this.handleCloseModal} categories={this.state.categories_options} onSubmit={this.handleSubmited} visible={this.state.create_modal_visible}/>
-                <Meta title="Laven Confession - Market"/>
                 <MarketSidebar onSearch={this.handleSearch} visible={this.state.side_bar} onCloseSideBar={() => this.setState({side_bar: false})} onCreate={this.handleCreate}/>
                 <div className="view flex">
                     <SectionBanner title="Marketplace" text="The best place for the community to buy and sell!" image="https://odindesignthemes.com/vikinger/img/banner/banner-bg.png"/>
