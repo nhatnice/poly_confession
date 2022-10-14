@@ -90,10 +90,8 @@ const Feed = () => {//LOAD ALL CONFESS FROM SERVER
 
   //OPEN PICTURE MODAL
   const handleOpenPictureModal = (img) => {
-    this.setState({
-      modal_is_open: true,
-      modal_img: img
-    })
+    setModalVisible(true);
+    setModalImg(img);
   }
 
   //CLOSE MODAL
@@ -111,7 +109,7 @@ const Feed = () => {//LOAD ALL CONFESS FROM SERVER
       <div className = "section confess aos-animate">
           {
           confessions.map(function(data, i){
-              return <PostCard data={data}/>
+              return <PostCard data={data} onOpenPicture={handleOpenPictureModal}/>
           }, this)}
       </div>
     </View>

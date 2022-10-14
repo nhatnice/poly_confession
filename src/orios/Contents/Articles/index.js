@@ -19,17 +19,22 @@ class Articles {
         });
     };
 
-    static update = async (id, title, description, banner, content, category, status, keywords) => {
-        return Axios.put(`/posts/${id}`, {
+    static update = async (id, { title, description, banner, content, category, status, keywords, commentCount, moreData } = {}) => {
+        let data = {
             title,
             description,
             banner,
             content,
             category,
             status,
-            slug: title.toSlug(),
-            keywords
-        });
+            keywords,
+            moreData,
+            commentCount
+        };
+
+        Object.keys(data).forEach(key => !data[key] ? delete data[key] : {});
+
+        return Axios.put(`/posts/${id}`, data);
     };
 
     static get = async artileId => Axios.get(`/posts/${artileId}`);

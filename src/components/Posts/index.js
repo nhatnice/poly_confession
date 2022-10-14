@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const daysInWeek = ["Chủ Nhật","Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
 
-export const PostCard = ({ data }) => {//HAS BACKGROUND POST
+export const PostCard = ({ data, onOpenPicture }) => {//HAS BACKGROUND POST
    //DEFAULT POST
    if(!data.moreData?.hasImage && data.banner) {
     var ngayTao = new Date(data.dateCreated);
@@ -23,13 +23,11 @@ export const PostCard = ({ data }) => {//HAS BACKGROUND POST
                   {timeSince(ngayTao)}
                 </p>
                 <p className="confess">{data.content}</p>
-                <Link to={`/post/${data._id}`} key={`${data._id}`} className="comments_count">{data.moreData?.commentCount} bình luận</Link>
-                <ReactionBox id={data._id} emotions={data.moreData?.emotions}/>
+                <Link to={`/post/${data._id}`} key={`${data._id}`} className="comments_count">{data.commentCount} bình luận</Link>
+                <ReactionBox confessId={data._id} emotions={data.moreData?.emotions}/>
             </div>
             <div className="confess_image_shadow">
-                <div className="confess_image_shadow_image" style={{background: `url(${data.banner}) no-repeat center center / cover`}}>
-      
-                </div>
+                <div className="confess_image_shadow_image" style={{background: `url(${data.banner}) no-repeat center center / cover`}}></div>
             </div>
         </div>
       </div>
@@ -48,23 +46,22 @@ export const PostCard = ({ data }) => {//HAS BACKGROUND POST
                   {timeSince(ngayTao)}
                 </p>
                 <p className="confess">{data.content}</p>
-                <Link to={`/post/${data._id}`} key={`${data._id}`} className="comments_count">{data.moreData?.commentCount} bình luận</Link>
-                <ReactionBox id={data._id} emotions={data.moreData?.emotions}/>
+                <Link to={`/post/${data._id}`} key={`${data._id}`} className="comments_count">{data.commentCount} bình luận</Link>
+                <ReactionBox confessId={data._id} emotions={data.moreData?.emotions}/>
             </div>
-            <div className="confess_image" onClick={() => this.handleOpenPictureModal(`${data.banner}`)} style={{background: `url(${data.banner}) no-repeat center center / cover`}}>
+            <div className="confess_image" onClick={() => onOpenPicture(data.banner)} style={{background: `url(${data.banner}) no-repeat center center / cover`}}>
       
             </div>
             <div className="confess_image_shadow">
-                <div className="confess_image_shadow_image" style={{background: `url(${data.banner}) no-repeat center center / cover`}}>
-      
-                </div>
+                <div className="confess_image_shadow_image" style={{background: `url(${data.banner}) no-repeat center center / cover`}}></div>
             </div>
         </div>
       </div>
     )
     //HAS BACKGROUND
-  }else {
+  }else { //DEFAULT
     var ngayTao = new Date(data.dateCreated);
+
     return(
       <div className="confess_container_parent">
         <div to={`/post/${data._id}`} key={`${data._id}`} className={`confess_container`} style={{}}>
@@ -75,8 +72,8 @@ export const PostCard = ({ data }) => {//HAS BACKGROUND POST
             <p className="date" id="dateFirst" data-tooltip={`${daysInWeek[ngayTao.getDay()]}, ${ngayTao.getDate()} tháng ${ngayTao.getMonth() + 1}, ${ngayTao.getFullYear()} lúc ${ngayTao.getHours() <= 9 ? '0' + ngayTao.getHours() : ngayTao.getHours()}:${ngayTao.getMinutes() <= 9 ? '0' + ngayTao.getMinutes() : ngayTao.getMinutes()}`} data-tooltip-position="bottom">
               {timeSince(ngayTao)}
             </p>
-            <Link to={`/post/${data._id}`} key={`${data._id}`} className="comments_count">{data.moreData?.commentCount} bình luận</Link>                
-            <ReactionBox id={data._id} emotions={data.moreData?.emotions}/>
+            <Link to={`/post/${data._id}`} key={`${data._id}`} className="comments_count">{data.commentCount} bình luận</Link>                
+            <ReactionBox confessId={data._id} emotions={data.moreData?.emotions}/>
         </div>
       </div>
     )

@@ -1,55 +1,33 @@
-import React, {Component} from 'react';
-import {SERVER_LINK} from '../functions/Global';
-import {getAllConfess, getSingleConfess} from '../functions/Post_Func';
-import io from 'socket.io-client';
-import Axios from 'axios';
+import React, {Component, useEffect, useState} from 'react';
+import { useParams } from 'react-router-dom';
+import API from '@api';
 
 //COMPONENTS
 import {PostCard} from '@components/Posts';
 import {CommentsContainer} from '@components/Posts/CommentsBox';
 import {Header} from '@components/Header/Header';
-import {SplashScreen} from '@components/Splash_Screen';
 
-const socket = io(SERVER_LINK);
+const PostPreview = () => {
+  const [confess, setConfess] = useState({});
+  let { confessId } = useParams();
 
-class PostPreview extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            post_id: this.props.match.params.post_id,
-            confess: null,
-            client_ip: null
-        }
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-        //GET ALL CONFESS FROM SERVER
-        getSingleConfess(this.state.post_id, (data) => {
-          this.setState({
-            confess: data
-          })
-        });
+  const fetchData = async () => {
+    let confession = await API.Confessions.get(confessId);
 
-        //GET CLIENT IP
-        Axios.get("https://www.cloudflare.com/cdn-cgi/trace").then((result) => {
-            let client_ip = result.data.split('\n')[2].split("=")[1];
-            this.setState({
-              client_ip: client_ip
-            })
-        })
-    }
+    setConfess(confession);
+  }
 
-    render() {
-        if(!this.state.confess || !this.state.client_ip) {
-          return(<SplashScreen/>);
-        } 
-
-        return(
-                <div className="postPreviewView">
-                    <Header title="POST" HistoryParent={this}/>
-                    <PostCard data={this.state.confess} post_id={this.state.post_id} client_ip={this.state.client_ip}/>
-                    <CommentsContainer socket={socket} post_id={this.state.post_id}/>
-                </div>
-        )
-    }
+  return(
+    <div className="postPreviewView">
+        <Header title="POST" goBack="/"/>
+        <PostCard data={confess} post_id={confessId}/>
+        <CommentsContainer post_id={confessId}/>
+    </div>
+  )
 }
 
 export default PostPreview;
