@@ -5,6 +5,7 @@ import * as Orios from "@orios";
 //COMPONENTS
 import {Navigation, ChildHeader} from './components/Navigation_Bar';
 import {AdsTopHeader} from './components/Header/AdsTopHeader';
+import Axios from 'axios';
 
 //VIEWS
 import Home from './views/Home';
@@ -35,9 +36,19 @@ class App extends Component {
     if(localStorage.getItem('dark_mode') == 'true') {
       document.body.classList.add('dark');
     }
+
+    //TRACK ANONYMOUSE USER
+    if(!localStorage.getItem("@auid")) {
+      this.trackUser();
+    }
   }
 
-  message = "HELLO";
+  trackUser = async () => {
+    let geo = await Axios.get('https://geolocation-db.com/json/');
+    let uIP = geo.data.IPv4;
+    localStorage.setItem("@auid", uIP);
+  }
+
   render() {
     return (
       <div>
@@ -56,9 +67,9 @@ class Main extends Component {
             <Route exact path='/test' element={<Test/>}/>
             <Route exact path='/lixi/:id' element ={<Lixi/>}/>
             <Route exact path='/feed/:id' element={<Feed/>}/>
-            <Route path='/post/:post_id' element={<PostPreview/>}/>
-            <Route path='/market/:page' element={<Market/>}/>
-            <Route path='/' element={<Home/>}/>
+            <Route exact path='/post/:confessId' element={<PostPreview/>}/>
+            <Route exact path='/market/:page' element={<Market/>}/>
+            <Route exact path='/' element={<Home/>}/>
           </Routes>
         </main>
       )

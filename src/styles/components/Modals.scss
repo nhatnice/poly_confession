@@ -6,6 +6,8 @@
     background: rgba(0,0,0,.7);
     z-index: 999;
     backdrop-filter:blur(20px) saturate(280%);
+    top: 0;
+    left: 0;
 
     @include mobile {
         z-index: 9999999;

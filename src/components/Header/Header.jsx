@@ -3,20 +3,17 @@ import './styles.scss';
 import { BsChevronLeft } from 'react-icons/bs';
 import {IoMenu, IoSearch, IoClose} from 'react-icons/io5';
 import {AiOutlineMenu} from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     constructor(props) {
         super(props);
     }
 
-    goBack = (This) => {
-        This.props.history.goBack();
-    }
-
     render() {
         return(
             <div className="header_container">
-                <button className="backBtn" onClick={() => this.goBack(this.props.HistoryParent)}><BsChevronLeft className="icon"/></button>
+                <Link className="backBtn" to={this.props.goBack || "#"}><BsChevronLeft className="icon"/></Link>
                 <h1>{this.props.title}</h1>
             </div>
         )

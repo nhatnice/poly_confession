@@ -9,37 +9,50 @@ import Like from './Resources/like.png';
 import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
 
 //API
-import {sendEmotionToConfess} from '../../functions/API';
+import Orios from '@orios';
 
 class ReactionBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
             liked: this.props.emotions?.map(function(e) { return e.client_ip; }).indexOf(this.props.client_ip) > -1 ? true : false,
-            like_count: this.props.emotions?.length || 0
+            likes: this.props.emotions || []
         }
     }
 
-    handleLike = () => {
-        sendEmotionToConfess("like", this.props.id, (res) => {});
+    handleLike = async () => {
+        let likesTemp = this.state.likes;
         
-        if(!this.state.liked) {
+        if(!this.state.liked) { //LIKE
+            likesTemp.push(localStorage.getItem("@auid"));
+        }else{ //UNLIKE
+            likesTemp.splice(likesTemp.indexOf(localStorage.getItem("@auid")), 1);
+
             this.setState({
-                liked: true,
-                like_count: parseInt(this.state.like_count) + 1
-            })
-        }else{
-            this.setState({
-                liked: false,
-                like_count: parseInt(this.state.like_count) - 1
+                likes: likesTemp
             })
         }
+
+        this.setState({
+            liked: !this.state.liked,
+            likes: likesTemp
+        })
+
+        //Update data
+        await Orios.Articles.update(this.props.confessId, {
+            moreData: {
+                emotions: likesTemp
+            }
+        })
     }
 
     render() {
         return(
             <div className="reaction_box_container">
-                <button className={this.state.liked ? "react_btn liked" : "react_btn"} onClick={this.handleLike}>{this.state.liked ? <AiFillHeart className="icon"/> : <AiOutlineHeart className="icon"/>}</button><p className={this.state.liked ? "react_count liked" : "react_count"}>{this.state.like_count} Likes</p>
+                <button className={this.state.liked ? "react_btn liked" : "react_btn"} onClick={this.handleLike}>
+                    {this.state.liked ? <AiFillHeart className="icon"/> : <AiOutlineHeart className="icon"/>}
+                </button>
+                <p className={this.state.liked ? "react_count liked" : "react_count"}>{this.state.likes.length} Likes</p>
             </div>
         )
     }
