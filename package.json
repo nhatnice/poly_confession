@@ -37,7 +37,8 @@
     "build": "npm i -f && react-app-rewired build",
     "deploy": "react-app-rewired build && sudo firebase deploy --only hosting",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "firebase-login": "firebase login:ci"
   },
   "eslintConfig": {
     "extends": "react-app"
