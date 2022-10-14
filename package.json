@@ -34,11 +34,10 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "dev": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "npm i -f && react-app-rewired build",
+    "deploy": "react-app-rewired build && sudo firebase deploy --only hosting",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "react-scripts build && cd build && git init && git add * && git commit -m 'UPDATE' && git branch -M main && git remote add origin https://github.com/Laven-Studio-Deployed-Frontend/lavenes.confession.git && git push -u origin main -f"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

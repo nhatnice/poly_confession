@@ -1,4 +1,4 @@
-const DEBUG = true;
+const DEBUG = false;
 
 const CONFIG = {
     URL: DEBUG ? 'http://localhost:9000/api/v1' : 'https://orios-server.lavenes.com/api/v1',

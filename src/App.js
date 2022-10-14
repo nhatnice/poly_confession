@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import * as Orios from "@orios";
+import Axios from 'axios';
 
 //COMPONENTS
 import {Navigation, ChildHeader} from './components/Navigation_Bar';
-import {AdsTopHeader} from './components/Header/AdsTopHeader';
-import Axios from 'axios';
+import { AppLabel } from '@components';
 
 //VIEWS
 import Home from './views/Home';
@@ -63,6 +63,7 @@ class Main extends Component {
   render() {
       return (
         <main>
+          <AppLabel/>
           <Routes>
             <Route exact path='/test' element={<Test/>}/>
             <Route exact path='/lixi/:id' element ={<Lixi/>}/>
