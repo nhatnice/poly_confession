@@ -1,10 +1,10 @@
 import React from 'react';
 
-const DEBUG = false;
+const DEBUG = true;
 
-const SERVER_LINK = DEBUG ? "http://hoatuoituongy.tk:8002" : "https://server.confession.lavenes.com:8002";
+const SERVER_LINK = DEBUG ? "http://localhost:8002" : "https://server.confession.lavenes.com:8002";
 const API_LINK = SERVER_LINK + '/laven_api/v1/';
-const WEB_LINK = DEBUG ? "http://hoatuoituongy.tk:8002" : "https://server.confession.lavenes.com";
+const WEB_LINK = DEBUG ? "http://localhost:8002" : "https://server.confession.lavenes.com";
 const MEDIA_LINK = SERVER_LINK + '/media/';
 
 function findWithAttr(array, attr, value) {

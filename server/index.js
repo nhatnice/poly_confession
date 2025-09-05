@@ -7,7 +7,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const https = require('https');
 const http = require('http');
-const mongoHost = "mongodb+srv://lavenesconfession:<db_password>@cluster0.8gfsr5m.mongodb.net/LavenesConfession?retryWrites=true&w=majority&appName=Cluster0";
+const mongoHost = "mongodb+srv://lavenesconfession:LavenesConfessionDB2022hjklakj@cluster0.8gfsr5m.mongodb.net/Confession?retryWrites=true&w=majority&appName=Cluster0";
 const Base64 = {
     _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
     encode: function (e) {
@@ -173,17 +173,17 @@ app.set("views", "./views");
 
 
 // Certificate
-const privateKey = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/privkey.pem', 'utf8') : "";
-const certificate = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/fullchain.pem', 'utf8') : "";
-const ca = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/fullchain.pem', 'utf8') : "";
+// const privateKey = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/privkey.pem', 'utf8') : "";
+// const certificate = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/fullchain.pem', 'utf8') : "";
+// const ca = !DEBUG ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/fullchain.pem', 'utf8') : "";
 
-const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca
-}; //HTTPS SERVER
-const server = DEBUG ? http.createServer(app) : https.createServer(credentials, app);
-//const server = http.createServer(app);
+// const credentials = {
+//     key: privateKey,
+//     cert: certificate,
+//     ca: ca
+// }; //HTTPS SERVER
+// const server = DEBUG ? http.createServer(app) : https.createServer(credentials, app);
+const server = http.createServer(app);
 
 server.listen(8002, () => {
     console.log('Server running on port 8002');
