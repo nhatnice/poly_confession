@@ -19,7 +19,7 @@ class PostPreview extends Component {
         this.state = {
             post_id: this.props.match.params.post_id,
             confess: null,
-            client_ip: null
+            client_ip: '0'
         }
 
         //GET ALL CONFESS FROM SERVER
@@ -28,14 +28,6 @@ class PostPreview extends Component {
             confess: data
           })
         });
-
-        //GET CLIENT IP
-        Axios.get("https://www.cloudflare.com/cdn-cgi/trace").then((result) => {
-            let client_ip = result.data.split('\n')[2].split("=")[1];
-            this.setState({
-              client_ip: client_ip
-            })
-        })
     }
 
     render() {

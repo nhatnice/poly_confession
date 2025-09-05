@@ -8,15 +8,10 @@ function getConfessFrom(range, id, callback) {
 }
 
 function sendEmotionToConfess(emotion, id, callback) {
-    //GET USER IP
-    Axios.get("https://www.cloudflare.com/cdn-cgi/trace").then((result) => {
-        let client_ip = result.data.split('\n')[2].split("=")[1];
-
-        //SEND EMOTION TO API
-        Axios.post(API_LINK + 'client_send_emotion/' + id, {emotion: emotion, user_id: "admin", date: new Date(), client_ip: client_ip}).then((res) => {
+    //SEND EMOTION TO API
+        Axios.post(API_LINK + 'client_send_emotion/' + id, {emotion: emotion, user_id: "admin", date: new Date(), client_ip: ''}).then((res) => {
             return callback(res.data);
         });
-    })
 }
 
 const API = {

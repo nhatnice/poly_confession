@@ -193,7 +193,7 @@ class ConfessPost extends Component {
         confess: undefined,
         range: 0,
         school_id: null,
-        client_ip: null,
+        client_ip: '0.0.0.0',
         is_getting_confess: false,
         modal_is_open: false,
         modal_img: ""
@@ -202,12 +202,12 @@ class ConfessPost extends Component {
       this.handleLoadConfess();
 
       //GET CLIENT IP
-      Axios.get("https://www.cloudflare.com/cdn-cgi/trace").then((result) => {
-          let client_ip = result.data.split('\n')[2].split("=")[1];
-          this.setState({
-            client_ip: client_ip
-          })
-      })
+      // Axios.get("https://www.cloudflare.com/cdn-cgi/trace").then((result) => {
+      //     let client_ip = result.data.split('\n')[2].split("=")[1];
+      //     this.setState({
+      //       client_ip: client_ip
+      //     })
+      // })
     }
 
     //LOAD ALL CONFESS FROM SERVER

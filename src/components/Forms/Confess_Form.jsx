@@ -82,25 +82,7 @@ class ConfessForm extends Component {
             msg : "Hãy nhập confess đi :3"
           })
         }else {
-          //GET USER DATA
-          Axios.get("https://www.cloudflare.com/cdn-cgi/trace").then((cloud_flare_result) => {
-              //GET DEVICE TYPE
-              const getDeviceType = () => {
-                const ua = navigator.userAgent;
-                if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-                  return "tablet";
-                }
-                if (
-                  /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
-                    ua
-                  )
-                ) {
-                  return "mobile";
-                }
-                return "desktop";
-              };
-
-              let data = {
+          let data = {
                 noidung: confess,
                 hashtag: "",
                 image: [image],
@@ -109,7 +91,7 @@ class ConfessForm extends Component {
                 video: null,
                 background: background,
                 clientData: {
-                  cloudflare: cloud_flare_result.data,
+                  cloudflare: {},
                   position: {
                     latitude: '',
                     longitude: ''
@@ -119,7 +101,7 @@ class ConfessForm extends Component {
                   browser_engine: navigator.product,
                   user_agent: navigator.userAgent,
                   OS: navigator.platform,
-                  device_type: getDeviceType()
+                  device_type: ''
                 },
                 analytics: window.location.search,
                 confess_id: "",
@@ -135,7 +117,6 @@ class ConfessForm extends Component {
               background_select_is_hidden: 'none',
               hasImage: 'none'
             })
-          })
         }
     }
   
