@@ -7,7 +7,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const https = require('https');
 const http = require('http');
-const mongoHost = "mongodb://lavenesconfession:LavenesConfessionDB2022hjklakj@localhost:27017/LavenesConfession";
+const mongoHost = "mongodb+srv://lavenesconfession:<db_password>@cluster0.8gfsr5m.mongodb.net/LavenesConfession?retryWrites=true&w=majority&appName=Cluster0";
 const Base64 = {
     _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
     encode: function (e) {
