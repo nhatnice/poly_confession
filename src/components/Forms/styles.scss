@@ -1,88 +1,88 @@
-@import "../../styles/lavenst.scss";
+@import '../../styles/lavenst.scss';
 
 .confess-form-mini.lixi {
-    position: unset;
-    & textarea {
-        margin-top: 24px;
+  position: unset;
+  & textarea {
+    margin-top: 24px;
 
-        @include mobile {
-            margin-top:0;
-            min-height: unset!important;
-            height: 76px!important;
-        }
+    @include mobile {
+      margin-top: 0;
+      min-height: unset !important;
+      height: 76px !important;
+    }
 
-        @include tablet {
-            margin-top:0;
-            min-height: unset!important;
-            height: 76px!important;
-        }
+    @include tablet {
+      margin-top: 0;
+      min-height: unset !important;
+      height: 76px !important;
+    }
 
-        &::placeholder {
-            transition: all .4s ease;
-            color: $-gray-1;
-        }
+    &::placeholder {
+      transition: all 0.4s ease;
+      color: $-gray-1;
+    }
+  }
+
+  & input {
+    &::placeholder {
+      transition: all 0.4s ease;
+      color: $-gray-1;
+    }
+  }
+
+  & .box {
+    & .icon {
+      font-size: 22px;
+      color: #9a9a9a;
     }
 
     & input {
-        &::placeholder {
-            transition: all .4s ease;
-            color: $-gray-1;
-        }
+      border: none;
+      outline: none;
+      background: transparent;
+      border-radius: 0;
+      margin-left: 16px;
+      font-weight: 400;
+      font-size: 16px;
+
+      &::placeholder {
+        color: #bdbdbd;
+      }
     }
 
-    & .box {
-        & .icon {
-            font-size: 22px;
-            color: #9a9a9a;
-        }
-
-        & input {
-            border: none;
-            outline: none;
-            background: transparent;
-            border-radius: 0;
-            margin-left: 16px;
-            font-weight: 400;
-            font-size: 16px;
-
-            &::placeholder {
-                color: #bdbdbd;
-            }
-        }
-
-        @include mobile {
-            margin-bottom: 20px;
-        }
-
-        @include tablet {
-            margin-bottom: 20px;
-        }
+    @include mobile {
+      margin-bottom: 20px;
     }
 
-    & .confess_image_container {
-        & .change_image_btn {
-            position: absolute;
-            z-index: 9;
-            padding: 8px 16px;
-            border-radius: 8px;
-            background: rgba(255,255,255,.55);
-            cursor: pointer;
-            backdrop-filter: blur(20px) saturate(280%);
-        }
+    @include tablet {
+      margin-bottom: 20px;
+    }
+  }
 
-        & .image::after {
-            padding-bottom: 200%;
-        }
+  & .confess_image_container {
+    & .change_image_btn {
+      position: absolute;
+      z-index: 9;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.55);
+      cursor: pointer;
+      backdrop-filter: blur(20px) saturate(280%);
     }
 
-    & .confess_submit_container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        & button {
-            position: relative;
-            white-space: nowrap;
-        }
+    & .image::after {
+      padding-bottom: 200%;
     }
+  }
+
+  & .confess_submit_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & button {
+      position: relative;
+      white-space: nowrap;
+    }
+  }
 }

@@ -2,7 +2,7 @@
 import Confessions from './Contents/Confessions';
 
 const API = {
-    Confessions
-}
+  Confessions,
+};
 
 export default API;

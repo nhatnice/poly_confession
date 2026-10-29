@@ -2,13 +2,13 @@
   "name": "hungvuongcfs.io",
   "version": "3.2.2",
   "description": "",
+  "license": "ISC",
+  "author": "Lavensoft Inc.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "Lavensoft Inc.",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.6",
     "connect-mongo": "^3.0.0",

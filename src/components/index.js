@@ -1,7 +1,4 @@
-import { View } from "./View";
+import { View } from './View';
 import { AppLabel } from './AppLabel';
 
-export {
-    View,
-    AppLabel
-}
+export { View, AppLabel };

@@ -1,61 +1,61 @@
-@import "../../styles/lavenst.scss";
+@import '../../styles/lavenst.scss';
 
 .toast {
-    position: fixed;
-    margin: auto;
-    top: unset;
-    bottom: 16px;
-    z-index: 9999999999;
-    backdrop-filter: blur(20px) saturate(180%);
-    background: rgba(0, 0, 0, 0.75);
-    color: #fff;
-    padding: 4px 8px;
-    font-size: 11px;
-    font-weight: 600;
-    font-family: "Google Sans";
-    line-height: 1.6;
-    min-width: 100px;
-    text-align: center;
-    border-radius: 8px;
-    white-space: nowrap;
-    box-sizing: border-box;
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: .4s ease;
-    visibility: hidden;
-    max-width: 50%;
+  position: fixed;
+  margin: auto;
+  top: unset;
+  bottom: 16px;
+  z-index: 9999999999;
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Google Sans';
+  line-height: 1.6;
+  min-width: 100px;
+  text-align: center;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s ease;
+  visibility: hidden;
+  max-width: 50%;
 
-    &.show {  
-        visibility: visible; 
-        -moz-animation: bubbleChat .4s ease;
-        -webkit-animation: bubbleChat .4s ease;
-        animation: bubbleChat .4s ease;
-    }
+  &.show {
+    visibility: visible;
+    -moz-animation: bubbleChat 0.4s ease;
+    -webkit-animation: bubbleChat 0.4s ease;
+    animation: bubbleChat 0.4s ease;
+  }
 
-    @include mobile {
-        margin-bottom: 96px;
-    }
+  @include mobile {
+    margin-bottom: 96px;
+  }
 
-    @include tablet {
-        margin-bottom: 96px;
-    }
+  @include tablet {
+    margin-bottom: 96px;
+  }
 }
 
 @keyframes bubbleChat {
-    0% {
-        transform: scale(0);
-        bottom: -16px;
-    }
+  0% {
+    transform: scale(0);
+    bottom: -16px;
+  }
 
-    50% {
-        transform: scale(1.1);
-        bottom: 24px;
-    }
+  50% {
+    transform: scale(1.1);
+    bottom: 24px;
+  }
 
-    100% {
-        transform: scale(1);
-        bottom: 16px;
-    }
+  100% {
+    transform: scale(1);
+    bottom: 16px;
+  }
 }

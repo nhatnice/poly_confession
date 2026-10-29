@@ -1,32 +1,32 @@
 @keyframes zoomUp {
-    0% {
-        transform: scale(0);
-    }
+  0% {
+    transform: scale(0);
+  }
 
-    50% {
-        transform: scale(1.1);
-    }
+  50% {
+    transform: scale(1.1);
+  }
 
-    100% {
-        transform: scale(1);
-    }
+  100% {
+    transform: scale(1);
+  }
 }
 
-@keyframes chatBoxShowingUp{
-    0% {
-        transform: scale(.8);
-        margin-top: 32px;
-        opacity: 0;
-    }
+@keyframes chatBoxShowingUp {
+  0% {
+    transform: scale(0.8);
+    margin-top: 32px;
+    opacity: 0;
+  }
 
-    50% {
-        //transform: scale(1.1);
-        //margin-top: 32px;
-    }
+  50% {
+    //transform: scale(1.1);
+    //margin-top: 32px;
+  }
 
-    100% {
-        transform: scale(1);
-        margin-top: 16px;
-        opacity: 1;
-    }
+  100% {
+    transform: scale(1);
+    margin-top: 16px;
+    opacity: 1;
+  }
 }

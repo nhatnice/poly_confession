@@ -1,68 +1,171 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Poly Confession (Lavenes Confession)
 
-## Available Scripts
+> An interactive, anonymous confession and greeting card platform designed for student communities, featuring confession feeds, custom greeting card builders, emotional reactions, dark mode support, and community marketplace modules.
 
-In the project directory, you can run:
+![Poly Confession Demo](./demo.png)
 
-### `npm start`
+---
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🌟 Key Features
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- **Anonymous Confession Feed**: Students can submit and view confessions anonymously with custom background cards or attached media.
+- **Interactive Greeting & "Lì Xì" Cards**: Seasonal greeting card builder (e.g., Teachers' Day greetings, Lunar New Year lucky money / "Lì Xì" cards) with customizable templates.
+- **Rich Reactions & Comments**: Built-in multi-emotion reactions (Like, Love, Sad, Angry, Funny) and nested comment threads.
+- **Dark Mode Support**: Seamless toggle between light and dark visual themes with local preference caching and system media preference detection.
+- **Responsive Layout**: Designed for mobile, tablet, and desktop viewports with responsive navigation and modal image viewers.
+- **Ultra-Fast Code Quality**: Configured with **Oxlint** and **Oxfmt** for instant linting and formatting.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Tech Stack
 
-### `npm run build`
+### Frontend
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Framework**: React 18
+- **Routing**: React Router DOM v6
+- **Styling**: Sass/SCSS, Materialize UI styles, custom CSS motion effects
+- **State & Data Fetching**: Axios, React Hooks
+- **Icons & UI Utilities**: `@react-icons/all-files`, `react-icons`, `react-toastify`, `autosize`
+- **Build System**: `react-app-rewired` with `react-scripts`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Backend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Runtime**: Node.js
+- **Server Framework**: Express.js
+- **Database & ODM**: MongoDB via Mongoose
+- **Real-time Engine**: Socket.IO
+- **File Uploads**: Multer
+- **Template Engine**: EJS
 
-### `npm run eject`
+### Tooling
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **Linter**: [Oxlint](https://oxc.rs/docs/guide/usage/linter.html) (Rust-powered JS/JSX linter)
+- **Formatter**: [Oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) (Rust-powered code formatter)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🚀 Getting Started
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Prerequisites
 
-## Learn More
+Ensure you have the following installed on your machine:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Node.js**: v18 or higher (tested up to v26 with legacy crypto flag)
+- **npm** or **pnpm**
+- **MongoDB**: Local or Atlas instance (for the Express server)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 1. Installation
 
-### Code Splitting
+Clone the repository and install frontend dependencies:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```bash
+git clone git@github.com:nhatnice/poly_confession.git
+cd poly_confession
 
-### Analyzing the Bundle Size
+# Install dependencies (use legacy-peer-deps due to React 18 peer resolution)
+npm install --legacy-peer-deps
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### 2. Development (Frontend)
 
-### Making a Progressive Web App
+To run the frontend development server:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```bash
+# For Node.js 17+:
+export NODE_OPTIONS=--openssl-legacy-provider
+export SKIP_PREFLIGHT_CHECK=true
 
-### Advanced Configuration
+npm start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+The application will be accessible at [http://localhost:3000](http://localhost:3000).
 
-### Deployment
+### 3. Production Build
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+To build the optimized static bundle:
 
-### `npm run build` fails to minify
+```bash
+export NODE_OPTIONS=--openssl-legacy-provider
+export SKIP_PREFLIGHT_CHECK=true
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+npm run build
+```
+
+The production output will be generated inside the `build/` folder. You can serve it locally using any static HTTP server (e.g., `npx serve -s build`).
+
+### 4. Running the Backend Server
+
+```bash
+cd server
+npm install
+npm start
+```
+
+_Note: Configure your MongoDB connection string in environment variables before starting the backend in production._
+
+---
+
+## 📋 Available Scripts
+
+Inside the `poly_confession` directory:
+
+| Script              | Command                   | Description                                       |
+| ------------------- | ------------------------- | ------------------------------------------------- |
+| `npm start`         | `react-app-rewired start` | Starts the React development server               |
+| `npm run build`     | `react-app-rewired build` | Creates an optimized production build in `build/` |
+| `npm run lint`      | `oxlint`                  | Runs Oxlint across the project with custom rules  |
+| `npm run lint:fix`  | `oxlint --fix`            | Automatically fixes autofixable Oxlint issues     |
+| `npm run fmt`       | `oxfmt`                   | Formats all code according to `.oxfmtrc.json`     |
+| `npm run fmt:check` | `oxfmt --check`           | Checks formatting without modifying files         |
+
+---
+
+## 🔍 Code Quality & Linter Configuration
+
+The project utilizes `.oxlintrc.json` and `.oxfmtrc.json` enforcing strict engineering rules:
+
+- **Max Lines per File**: Strict `eslint/max-lines` capped at **300 lines** to prevent God components.
+- **Max Lines per Function**: `eslint/max-lines-per-function` capped at **80 lines** to avoid monolithic functions.
+- **Single Class per File**: `eslint/max-classes-per-file` restricted to **1** class.
+- **Functional Components Preferred**: `react/prefer-function-component` enforced as `error` to deprecate legacy class components.
+- **Static Class Prevention**: `unicorn/no-static-only-class` enforced as `error` (classes with only static methods should be plain objects/modules).
+
+---
+
+## 📂 Project Structure
+
+```text
+poly_confession/
+├── .oxfmtrc.json            # Oxfmt formatting rules
+├── .oxlintrc.json           # Oxlint rules (max-lines, function components, etc.)
+├── config-overrides.js      # CRA Webpack overrides (module aliases)
+├── demo.png                 # Application UI screenshot
+├── package.json             # Frontend dependencies & npm scripts
+├── public/                  # Static assets, splash screens, favicon
+├── server/                  # Backend Express server & MongoDB schemas
+│   ├── index.js             # Express API endpoints & socket handlers
+│   └── modules/             # Mongoose database models
+└── src/
+    ├── App.js               # Root application router & theme initialization
+    ├── api/                 # API client wrapper
+    ├── components/          # Reusable UI components
+    │   ├── Forms/           # Confession and greeting card forms
+    │   ├── Header/          # Application headers & banners
+    │   ├── Navigation_Bar/  # Top navigation & theme toggler
+    │   └── Posts/           # Confession cards, reaction box, modal
+    ├── functions/           # Utility functions & API helpers
+    ├── orios/               # Internal backend SDK / helper modules
+    ├── styles/              # SCSS style sheets and design assets
+    └── views/               # Route views (Feed, Home, Market, Lixi)
+```
+
+---
+
+## 🔒 Security Audit Notice
+
+During a codebase security inspection, several items were flagged that must be addressed before production deployment:
+
+1. **Committed SSL Private Keys**: Unencrypted private keys (`privkey.pem`) found in `cert.hungvuongconfess.tk/` and `server/cert.hungvuongconfess.tk/` should be revoked and added to `.gitignore`.
+2. **Hardcoded Database Credentials**: Plaintext MongoDB connection string in `server/index.js` must be migrated to environment variables (`process.env.MONGO_URI`).
+3. **Client IP Logging**: `server/backup/backup_confession.json` contains raw client IP addresses and User-Agent fingerprints. Do not commit database dumps into source control.
+4. **Third-Party Client IP Tracking**: `src/functions/API.jsx` queries Cloudflare's `/cdn-cgi/trace` to attach client IPs to confession reactions. Move client IP resolution entirely to server-side headers if needed.

@@ -1,121 +1,121 @@
 //BUTTON
 button.lavenst.btn {
-    font-size: 13.3333px;
-    transition: $fastTransition;
-    margin-top: 0;
-    margin-bottom: 0;
-    float: right;
+  font-size: 13.3333px;
+  transition: $fastTransition;
+  margin-top: 0;
+  margin-bottom: 0;
+  float: right;
+  box-shadow: none;
+  height: 36px;
+  padding: 0 16px;
+  letter-spacing: 0.5px;
+  line-height: 36px;
+  border-radius: 7px;
+
+  &.icon {
+    margin-right: 8px;
+
+    &.submit {
+      margin-right: 0 !important;
+      margin-left: 8px !important;
+    }
+  }
+
+  //CONTAINER
+  &.default {
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
+    color: $dark;
+  }
+
+  &.primary {
+    background-color: $primaryComponentsColor;
+    box-shadow: 0 4px 16.5px rgba($primaryComponentsColor, 0.75);
+    color: #fff;
+  }
+
+  &.secondary {
+    background-color: $secondaryComponentsColor;
+    box-shadow: 0 4px 16.5px rgba($secondaryComponentsColor, 0.75);
+  }
+
+  //TEXT
+  &.text {
+    background-color: transparent;
     box-shadow: none;
-    height: 36px;
-    padding: 0 16px;
-    letter-spacing: .5px;
-    line-height: 36px;
-    border-radius: 7px;
-
-    &.icon {
-        margin-right: 8px;
-
-        &.submit {
-            margin-right: 0!important;
-            margin-left: 8px!important;
-        }
-    }
-
-    //CONTAINER
-    &.default {
-        background-color: #fff;
-        box-shadow: 0 2px 15px rgba(0,0,0,.25);
-        color: $dark;
-    }
 
     &.primary {
-        background-color: $primaryComponentsColor;
-        box-shadow: 0 4px 16.5px rgba($primaryComponentsColor, .75);
-        color: #fff;
+      color: $primaryComponentsColor;
     }
 
     &.secondary {
-        background-color: $secondaryComponentsColor;
-        box-shadow: 0 4px 16.5px rgba($secondaryComponentsColor, .75);
+      color: $secondaryComponentsColor;
     }
 
-    //TEXT
+    &.default {
+      color: $dark;
+    }
+  }
+
+  //HOVER EFFECTS
+  &:hover {
+    transform: scale(1.075);
+
     &.text {
-        background-color: transparent;
-        box-shadow: none;
+      box-shadow: none !important;
+      transform: none !important;
 
-        &.primary {
-            color: $primaryComponentsColor;
-        }
+      &.primary {
+        background-color: rgba($primaryComponentsColor, 0.05);
+      }
 
-        &.secondary {
-            color: $secondaryComponentsColor;
-        }
+      &.secondary {
+        background-color: rgba($secondaryComponentsColor, 0.05);
+      }
 
-        &.default {
-            color: $dark;
-        }
+      &.default {
+        background-color: rgba(0, 0, 0, 0.025);
+      }
     }
 
-    //HOVER EFFECTS
+    &.primary {
+      box-shadow: 0 4px 16.5px 0 rgba($primaryComponentsColor, 0.65);
+    }
+
+    &.secondary {
+      box-shadow: 0 4px 16.5px 0 rgba($secondaryComponentsColor, 0.65);
+    }
+  }
+
+  //ACTIVE EFFECTS
+  &:active {
+    transform: scale(1);
+
+    &.primary {
+      box-shadow: 0 4px 16.5px 0 $pink;
+    }
+
+    &.secondary {
+      box-shadow: 0 4px 16.5px 0 $secondaryComponentsColor;
+    }
+  }
+
+  //DISABLED
+  &:disabled {
+    opacity: 0.7;
+    box-shadow: none;
+
+    &.default {
+      border: 1px solid #eaeaea;
+    }
+
     &:hover {
-        transform: scale(1.075);
+      box-shadow: none;
+      transform: none;
 
-        &.text {
-            box-shadow: none!important;
-            transform: none!important;
-
-            &.primary {
-                background-color: rgba($primaryComponentsColor, .05);
-            }
-            
-            &.secondary {
-                background-color: rgba($secondaryComponentsColor, .05);
-            }
-
-            &.default {
-                background-color: rgba(0,0,0, .025);
-            }
-        }
-
-        &.primary {
-            box-shadow: 0 4px 16.5px 0 rgba($primaryComponentsColor, .65)
-        }
-
-        &.secondary {
-            box-shadow: 0 4px 16.5px 0 rgba($secondaryComponentsColor, .65)
-        }
+      &.text {
+        background-color: transparent !important;
+      }
     }
-
-    //ACTIVE EFFECTS
-    &:active {
-        transform: scale(1);
-
-        &.primary {
-            box-shadow: 0 4px 16.5px 0 $pink;
-        }
-
-        &.secondary {
-            box-shadow: 0 4px 16.5px 0 $secondaryComponentsColor;
-        }
-    }
-
-    //DISABLED
-    &:disabled {
-        opacity: .7;
-        box-shadow: none;
-
-        &.default {
-            border: 1px solid #eaeaea;
-        }
-
-        &:hover {
-            box-shadow: none;
-            transform: none;
-
-            &.text {
-                background-color: transparent!important; 
-            }
-        }
-    }
+  }
 }

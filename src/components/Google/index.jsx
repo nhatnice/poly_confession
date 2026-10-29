@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import "./styles.scss";
+import './styles.scss';
 
 const googleAdId = 'ca-pub-2704982003472974';
-
 
 class GoogleAd extends Component {
   googleInit = null;
@@ -12,8 +11,7 @@ class GoogleAd extends Component {
   componentDidMount() {
     const { timeout } = this.props;
     this.googleInit = setTimeout(() => {
-      if (typeof window !== 'undefined')
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      if (typeof window !== 'undefined') (window.adsbygoogle = window.adsbygoogle || []).push({});
     }, timeout);
   }
 

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {BaoLixi, Mail} from '../components/Lixi';
-import {API} from '../functions/API';
-import {SplashScreen} from '../components/Splash_Screen';
+import React, { Component } from 'react';
+import { BaoLixi, Mail } from '../components/Lixi';
+import { API } from '../functions/API';
+import { SplashScreen } from '../components/Splash_Screen';
 
 import Bao1 from '../styles/resources/baoLixi/Bao1.png';
 import Bao2 from '../styles/resources/baoLixi/Bao2.png';
@@ -25,44 +25,47 @@ import Bao20118 from '../styles/resources/bao2011/bao8.png';
 import Music from '../styles/resources/audio/youarethereason.mp3';
 
 class Lixi extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  
-            bao_lixi: [Bao1,Bao2,Bao3,Bao4,Bao5,Bao6,Bao7,Bao8,Bao9],
-            bao2011: [Bao20111, Bao20112,Bao20113,Bao20114,Bao20115,Bao20116,Bao20117,Bao20118],
-            data: null,
-            openning: false
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      bao_lixi: [Bao1, Bao2, Bao3, Bao4, Bao5, Bao6, Bao7, Bao8, Bao9],
+      bao2011: [Bao20111, Bao20112, Bao20113, Bao20114, Bao20115, Bao20116, Bao20117, Bao20118],
+      data: null,
+      openning: false,
+    };
 
-        API.get('get_lixi/'+this.props.match.params.id,(res) => {
-            this.setState({
-                data: res
-            })
-        })
-    }
+    API.get('get_lixi/' + this.props.match.params.id, (res) => {
+      this.setState({
+        data: res,
+      });
+    });
+  }
 
-    handleOpenning = () => {
-        this.refs.music.play();
-        this.refs.music.currentTime = 69;
-        
-        this.setState({
-            openning: true
-        })
-    }
+  handleOpenning = () => {
+    this.refs.music.play();
+    this.refs.music.currentTime = 69;
 
-    render() {
-        if(!this.state.data) return <SplashScreen/>
+    this.setState({
+      openning: true,
+    });
+  };
 
-        const data = this.state.data;
+  render() {
+    if (!this.state.data) return <SplashScreen />;
 
-        return(
-            <div className="lixiView" style={{display: 'flex', alignItems:'center', justifyContent: 'center'}}>
-                <audio src={Music} ref="music"/>
-                <Mail data={data} visible={this.state.openning}/>
-                <BaoLixi data={data} bao_lixi={this.state.bao2011} onOpen={this.handleOpenning}/>
-            </div>
-        )
-    }
+    const data = this.state.data;
+
+    return (
+      <div
+        className="lixiView"
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <audio src={Music} ref="music" />
+        <Mail data={data} visible={this.state.openning} />
+        <BaoLixi data={data} bao_lixi={this.state.bao2011} onOpen={this.handleOpenning} />
+      </div>
+    );
+  }
 }
 
 export default Lixi;

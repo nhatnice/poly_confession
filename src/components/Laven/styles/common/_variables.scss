@@ -1,7 +1,7 @@
 //VARIABLES
 //#region
 //TRANSITION
-$fastTransition: all .25s ease;
+$fastTransition: all 0.25s ease;
 
 //COLORS
 $dark: #333;
@@ -10,9 +10,9 @@ $gray-4: #bdbdbd;
 $pink: rgb(247, 53, 88);
 $blue: rgb(53, 137, 247);
 
-$primaryComponentsColor:  $pink;
+$primaryComponentsColor: $pink;
 $secondaryComponentsColor: $blue;
 
 //ANOTHER
-$disabledOpacity: .75;
+$disabledOpacity: 0.75;
 //#endregion

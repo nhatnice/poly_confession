@@ -1,10 +1,6 @@
 import React from 'react';
-import "./styles.scss";
+import './styles.scss';
 
 export const Toast = (props) => {
-    return (
-        <div className={`toast ${props.visible ? 'show' : ''}`}>
-            {props.message}
-        </div>
-    )
-}
+  return <div className={`toast ${props.visible ? 'show' : ''}`}>{props.message}</div>;
+};

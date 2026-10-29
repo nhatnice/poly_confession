@@ -1,4 +1,4 @@
-import "./utils";
+import './utils';
 
 //*Users
 import Users from './Users';
@@ -11,20 +11,23 @@ import Files from './Contents/Files';
 import Movies from './Contents/Movies';
 
 const Orios = {
-    Users,
-    Categories,
-    Articles,
-    Files,
-    Movies,
-    Comments
-}
+  Users,
+  Categories,
+  Articles,
+  Files,
+  Movies,
+  Comments,
+};
 
 export const initializeApp = (appConfig) => {
-    const { apiKey, app } = appConfig;
+  const { apiKey, app } = appConfig;
 
-    localStorage.setItem("@ors_api", JSON.stringify({
-        app
-    }));
-}
+  localStorage.setItem(
+    '@ors_api',
+    JSON.stringify({
+      app,
+    }),
+  );
+};
 
 export default Orios;
