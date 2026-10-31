@@ -1,2 +1,18 @@
 /node_modules
 /public/media
+
+# environment files
+.env
+.env.*
+!.env.example
+
+# SSL certificates and private keys
+*.pem
+*.key
+*.crt
+cert.*
+/cert.*
+
+# database backups
+backup/
+*.log
