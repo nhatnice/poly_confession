@@ -1,12 +1,15 @@
 import React from 'react';
 
-const DEBUG = false;
+const DEBUG = process.env.NODE_ENV === 'development';
 
-const SERVER_LINK = DEBUG
-  ? 'http://hoatuoituongy.tk:8002'
-  : 'https://server.confession.lavenes.com:8002';
+const DEFAULT_ORIGIN =
+  typeof window !== 'undefined' && window.location.origin
+    ? window.location.origin
+    : 'http://localhost:8002';
+
+const SERVER_LINK = process.env.REACT_APP_SERVER_URL || DEFAULT_ORIGIN;
 const API_LINK = SERVER_LINK + '/laven_api/v1/';
-const WEB_LINK = DEBUG ? 'http://hoatuoituongy.tk:8002' : 'https://server.confession.lavenes.com';
+const WEB_LINK = SERVER_LINK;
 const MEDIA_LINK = SERVER_LINK + '/media/';
 
 function findWithAttr(array, attr, value) {
