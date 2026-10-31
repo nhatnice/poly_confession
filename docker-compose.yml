@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: poly_confession_app
+    restart: unless-stopped
+    ports:
+      - '${PORT:-8002}:8002'
+    environment:
+      - PORT=8002
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/poly_confession
+    depends_on:
+      - mongo
+    volumes:
+      - media_uploads:/app/server/public/media
+
+  mongo:
+    image: mongo:5
+    container_name: poly_confession_mongo
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
+  media_uploads:
