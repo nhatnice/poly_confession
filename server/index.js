@@ -1,4 +1,5 @@
-const DEBUG = false;
+require('dotenv').config();
+const DEBUG = process.env.NODE_ENV === 'development';
 //const cookieParser = require('cookie-parser');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -8,7 +9,7 @@ const bodyParser = require('body-parser');
 const https = require('https');
 const http = require('http');
 const mongoHost =
-  'mongodb://lavenesconfession:LavenesConfessionDB2022hjklakj@localhost:27017/LavenesConfession';
+  process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://localhost:27017/poly_confession';
 const Base64 = {
   _keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
   encode: function (e) {
@@ -179,32 +180,42 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
 
-// Certificate
-const privateKey = !DEBUG
-  ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/privkey.pem', 'utf8')
-  : '';
-const certificate = !DEBUG
-  ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/fullchain.pem', 'utf8')
-  : '';
-const ca = !DEBUG
-  ? fs.readFileSync('/etc/letsencrypt/live/server.confession.lavenes.com/fullchain.pem', 'utf8')
-  : '';
+// Serve frontend build if present
+const clientBuildPath = path.resolve(__dirname, '../build');
+if (fs.existsSync(clientBuildPath)) {
+  app.use(express.static(clientBuildPath));
+}
 
-const credentials = {
-  key: privateKey,
-  cert: certificate,
-  ca: ca,
-}; //HTTPS SERVER
-const server = DEBUG ? http.createServer(app) : https.createServer(credentials, app);
-//const server = http.createServer(app);
+// Server initialization (Default: HTTP, optional HTTPS via environment paths)
+const PORT = process.env.PORT || 8002;
+let server;
 
-server.listen(8002, () => {
-  console.log('Server running on port 8002');
+if (process.env.SSL_KEY_PATH && process.env.SSL_CERT_PATH) {
+  try {
+    const credentials = {
+      key: fs.readFileSync(process.env.SSL_KEY_PATH, 'utf8'),
+      cert: fs.readFileSync(process.env.SSL_CERT_PATH, 'utf8'),
+      ca: process.env.SSL_CA_PATH ? fs.readFileSync(process.env.SSL_CA_PATH, 'utf8') : undefined,
+    };
+    server = https.createServer(credentials, app);
+  } catch (err) {
+    console.error(
+      'Failed to load SSL certificates from environment paths, falling back to HTTP:',
+      err.message,
+    );
+    server = http.createServer(app);
+  }
+} else {
+  server = http.createServer(app);
+}
+
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 const io = require('socket.io')(server);
 
@@ -568,6 +579,21 @@ app.get('/update', (req, res) => {
     },
   );
 });
+
+// SPA fallback: Serve index.html for client-side routing if static build exists
+if (fs.existsSync(clientBuildPath)) {
+  app.get('*', (req, res, next) => {
+    if (
+      req.path.startsWith('/laven_api/') ||
+      req.path.startsWith('/media/') ||
+      req.path.startsWith('/uploadImage') ||
+      req.path.startsWith('/hellofromboss')
+    ) {
+      return next();
+    }
+    res.sendFile(path.join(clientBuildPath, 'index.html'));
+  });
+}
 //
 
 //#endregion
