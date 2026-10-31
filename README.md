@@ -1,6 +1,8 @@
 # Poly Confession (Lavenes Confession)
 
 > An interactive, anonymous confession and greeting card platform designed for student communities, featuring confession feeds, custom greeting card builders, emotional reactions, dark mode support, and community marketplace modules.
+>
+> 🗓️ **Timeline**: Originally released in **2019** • Security audited & modernized in **2026**.
 
 ![Poly Confession Demo](./demo.png)
 
@@ -93,15 +95,36 @@ npm run build
 
 The production output will be generated inside the `build/` folder. You can serve it locally using any static HTTP server (e.g., `npx serve -s build`).
 
-### 4. Running the Backend Server
+### 4. Running with Docker (Recommended)
+
+To build and run both Frontend, Backend, and MongoDB with a single command:
+
+```bash
+docker compose up --build
+```
+
+The application will be accessible at [http://localhost:8002](http://localhost:8002).
+
+Or to build and run only the standalone Docker container:
+
+```bash
+# Build unified image (frontend static build + express server)
+docker build -t poly-confession .
+
+# Run container (connecting to an external MongoDB or container network)
+docker run -p 8002:8002 -e MONGODB_URI="mongodb://host.docker.internal:27017/poly_confession" poly-confession
+```
+
+### 5. Running the Backend Server Locally
 
 ```bash
 cd server
+cp .env.example .env
 npm install
 npm start
 ```
 
-_Note: Configure your MongoDB connection string in environment variables before starting the backend in production._
+_Note: Configure your MongoDB connection string in `.env` before starting the backend._
 
 ---
 
@@ -161,11 +184,17 @@ poly_confession/
 
 ---
 
-## 🔒 Security Audit Notice
+## 🔒 Security Audit & Hardening (Audited in 2026)
 
-During a codebase security inspection, several items were flagged that must be addressed before production deployment:
+> [!NOTE]
+> This project was originally released in **2019** and underwent a security and codebase audit in **2026**.
 
-1. **Committed SSL Private Keys**: Unencrypted private keys (`privkey.pem`) found in `cert.hungvuongconfess.tk/` and `server/cert.hungvuongconfess.tk/` should be revoked and added to `.gitignore`.
-2. **Hardcoded Database Credentials**: Plaintext MongoDB connection string in `server/index.js` must be migrated to environment variables (`process.env.MONGO_URI`).
-3. **Client IP Logging**: `server/backup/backup_confession.json` contains raw client IP addresses and User-Agent fingerprints. Do not commit database dumps into source control.
-4. **Third-Party Client IP Tracking**: `src/functions/API.jsx` queries Cloudflare's `/cdn-cgi/trace` to attach client IPs to confession reactions. Move client IP resolution entirely to server-side headers if needed.
+During the security inspection of the legacy 2019 codebase, several critical items were flagged and remediated:
+
+1. ✅ **Committed SSL Private Keys Removed**: Deleted unencrypted private keys and certificate files (`privkey.pem`, `server.pem`) from `cert.hungvuongconfess.tk/` and `server/cert.hungvuongconfess.tk/`. Updated `.gitignore` to prevent any `.pem`, `.key`, or `.crt` files from being committed.
+2. ✅ **Hardcoded Database Credentials Removed**: Migrated MongoDB connection strings in `server/index.js` to environment variables (`process.env.MONGODB_URI` / `process.env.MONGO_URI`) with `.env.example` templates.
+3. ✅ **Internal Server Paths Cleared**: Removed hardcoded absolute paths (`/etc/letsencrypt/...` and local disk paths) from server code and workspace configurations.
+4. ✅ **Containerization & Production Deployment**: Added multi-stage `Dockerfile` and `docker-compose.yml` that builds the React frontend and serves both API and static assets from Express behind HTTP with optional TLS injection.
+5. ⚠️ **Database Backup User PII Notice**: `server/backup/backup_confession.json` contains legacy confession submissions with client IP addresses and User-Agent fingerprints. Ensure backups are excluded via `.gitignore` and kept in secure off-site storage.
+6. ⚠️ **Third-Party Client IP Tracking**: `src/functions/API.jsx` previously queried Cloudflare's `/cdn-cgi/trace` on client machines. Client IP resolution should be handled strictly server-side if required, or omitted for user anonymity.
+7. ⚠️ **Admin Deletion Route**: `server/index.js` deletion endpoint (`/laven_api/v1/delete_confess/nhatsdevil/:id`) should be upgraded with JWT or session authentication prior to open public deployment.
